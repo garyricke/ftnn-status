@@ -4,11 +4,12 @@
 //
 // Required env var:   CLOCKIFY_API_KEY
 // Optional env vars (have sensible defaults):
-//   FTNN_PROJECT_NAME   default "FTNN 2"
-//   FTNN_BLOCK_HOURS    default 67      (hours in the prepaid block)
-//   FTNN_OVERAGE_HOURS  default 21      (hours rolled in "off the top" at approval)
-//   FTNN_BLOCK_START    default 2026-02-25  (ISO date the block began)
-//   FTNN_RATE           default 74.6268 ($/hour)
+//   FTNN_PROJECT_NAME    default "FTNN 2"
+//   FTNN_BLOCK_HOURS     default 67      (hours in the prepaid 2026 block)
+//   FTNN_CARRYOVER_HOURS default 4       (hours that remained on the prior account, Jan 2026)
+//   FTNN_OVERAGE_HOURS   default 0       (any hours owed; not applicable for the 2026 account)
+//   FTNN_BLOCK_START     default 2026-02-25  (ISO date the block began)
+//   FTNN_RATE            default 74.6268 ($/hour)
 
 const BASE = "https://api.clockify.me/api/v1";
 
@@ -30,7 +31,8 @@ exports.handler = async function () {
     if (!KEY) throw new Error("Missing CLOCKIFY_API_KEY env var");
     const PROJECT = process.env.FTNN_PROJECT_NAME || "FTNN 2";
     const BLOCK = Number(process.env.FTNN_BLOCK_HOURS || 67);
-    const OVERAGE = Number(process.env.FTNN_OVERAGE_HOURS || 21);
+    const CARRYOVER = Number(process.env.FTNN_CARRYOVER_HOURS || 4);
+    const OVERAGE = Number(process.env.FTNN_OVERAGE_HOURS || 0);
     const START = process.env.FTNN_BLOCK_START || "2026-02-25";
     const RATE = Number(process.env.FTNN_RATE || 74.6268);
 
@@ -85,7 +87,7 @@ exports.handler = async function () {
     } catch (e) { /* weekly is best-effort; meter still works */ }
     const byWeek = Object.keys(weekMap).sort().map((w) => ({ weekStart: w, hours: +weekMap[w].toFixed(2) }));
 
-    const net = BLOCK - OVERAGE;
+    const net = BLOCK - OVERAGE + CARRYOVER;
     const remaining = net - used;
     const pctUsed = net > 0 ? (used / net) * 100 : 0;
     const elapsedDays = Math.max(
@@ -99,6 +101,7 @@ exports.handler = async function () {
       body: JSON.stringify({
         project: PROJECT,
         blockHours: BLOCK,
+        carryoverHours: CARRYOVER,
         overageHours: OVERAGE,
         netHours: net,
         usedHours: +used.toFixed(2),

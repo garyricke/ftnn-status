@@ -90,9 +90,10 @@ function reads Clockify server-side and returns just the budget JSON.
    `netlify/functions/ftnn-budget.js`.)
 2. In the new site: **Site settings → Environment variables → Add** —
    `CLOCKIFY_API_KEY` = *(your Clockify API key)*. Redeploy.
-   Optional overrides (defaults in parentheses): `FTNN_OVERAGE_HOURS` (21),
-   `FTNN_BLOCK_HOURS` (67), `FTNN_BLOCK_START` (2026-02-25), `FTNN_RATE` (74.6268),
-   `FTNN_PROJECT_NAME` ("FTNN 2").
+   Optional overrides (defaults in parentheses): `FTNN_BLOCK_HOURS` (67),
+   `FTNN_CARRYOVER_HOURS` (4, hours that remained on the prior account),
+   `FTNN_OVERAGE_HOURS` (0), `FTNN_BLOCK_START` (2026-02-25), `FTNN_RATE` (74.6268),
+   `FTNN_PROJECT_NAME` ("FTNN 2"). Net available = block − overage + carryover.
 3. Your function URL is `https://<your-site>.netlify.app/.netlify/functions/ftnn-budget`
    — test it in a browser; it should return budget JSON.
 4. In `squarespace-embed.html`, set `BUDGET_URL` to that URL and re-paste into the

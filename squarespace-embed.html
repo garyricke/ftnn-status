@@ -33,12 +33,14 @@
         var pct = Math.round(b.pctUsed);
         var set = function(id, v){ var el=$(id); if(el) el.textContent=v; };
         set("fs-bud-pct", pct);
+        var pill = $("fs-bud-pill");
+        if (pill) pill.className = "pill " + (pct >= 90 ? "is-blocked" : pct >= 75 ? "is-next" : "is-active");
         set("fs-bud-used", b.usedHours.toFixed(1));
         set("fs-bud-remaining", b.remainingHours.toFixed(1));
         set("fs-bud-net", b.netHours);
         set("fs-bud-elapsed", b.elapsedDays);
-        set("fs-bud-netend", b.netHours + " h net");
-        set("fs-bud-mid", b.usedHours.toFixed(1) + " h used · " + pct + "% of net");
+        set("fs-bud-netend", b.netHours + " h avail");
+        set("fs-bud-mid", b.usedHours.toFixed(1) + " h used · " + pct + "% of available");
         var meter = $("fs-bud-meter");
         if (meter){
           meter.style.width = Math.max(0, Math.min(100, b.pctUsed)) + "%";
@@ -50,7 +52,8 @@
         var note = $("fs-bud-note");
         if (note){
           var asof = new Date(b.asOf).toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
-          note.innerHTML = "Prepaid block: <strong>" + b.blockHours + " h · $5,000</strong> (Invoice 03043701, ≈ $" + b.rate.toFixed(2) + "/h). Less <strong>" + b.overageHours + " h</strong> overage rolled in at approval = <strong>" + b.netHours + " h net</strong>. <strong>" + b.usedHours.toFixed(1) + " h</strong> used, ~<strong>" + b.remainingHours.toFixed(1) + " h (~$" + b.dollarsRemaining.toLocaleString() + ")</strong> left · <strong>" + b.elapsedDays + " days</strong> elapsed. Live from Clockify “" + b.project + "” · updated " + asof + ".";
+          var carry = b.carryoverHours ? " plus <strong>" + b.carryoverHours + " h</strong> carried over from the prior account" : "";
+          note.innerHTML = "Prepaid block: <strong>" + b.blockHours + " h · $5,000</strong> (Invoice 03043701, ≈ $" + b.rate.toFixed(2) + "/h)" + carry + " = <strong>" + b.netHours + " h available</strong> for 2026. <strong>" + b.usedHours.toFixed(1) + " h</strong> used, ~<strong>" + b.remainingHours.toFixed(1) + " h (~$" + b.dollarsRemaining.toLocaleString() + ")</strong> left · <strong>" + b.elapsedDays + " days</strong> elapsed. Live from Clockify “" + b.project + "” · updated " + asof + ".";
         }
         // weekly bar chart in the detail modal
         if (b.byWeek && b.byWeek.length) {
