@@ -1,0 +1,22 @@
+<!-- =====================================================================
+     SQUARESPACE  /status  PAGE — paste this ONCE into a Code Block.
+     You never need to touch it again: it always pulls the latest
+     ftnn-status.html from GitHub Pages.
+
+     This is wired to garyricke/ftnn-status — paste as-is into the
+     /status page Code Block. (No edits needed.)
+     ===================================================================== -->
+<div id="ftnn-status-mount" style="min-height:200px;font-family:-apple-system,Segoe UI,sans-serif;color:#6b7e89;padding:24px;">Loading status…</div>
+<script>
+(function(){
+  var STATUS_URL = "https://garyricke.github.io/ftnn-status/ftnn-status.html";
+  var mount = document.getElementById("ftnn-status-mount");
+  fetch(STATUS_URL + "?v=" + Date.now(), {cache:"no-store"})
+    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function(html){ mount.innerHTML = html; })
+    .catch(function(e){
+      mount.innerHTML = '<p style="color:#b42318;padding:24px;">Status is temporarily unavailable. Please refresh in a moment.</p>';
+      console.error("FTNN status load failed:", e);
+    });
+})();
+</script>

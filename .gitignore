@@ -1,0 +1,9 @@
+# Source / reference material — never publish to the public repo
+*.eml
+*.pdf
+*.docx
+*.doc
+*.key
+*.pptx
+# OS noise
+.DS_Store

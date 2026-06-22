@@ -1,0 +1,227 @@
+<!-- ============================================================
+     FTNN — STATUS & OPEN ITEMS  (single source of truth)
+     Edit this file, commit, and push. The /status page on
+     Squarespace fetches and injects it automatically.
+     • Update the date in .fs-date below each time.
+     • Status pill classes: is-done | is-active | is-next | is-blocked
+     ============================================================ -->
+<div id="ftnn-status">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+#ftnn-status *{box-sizing:border-box;margin:0;padding:0;}
+#ftnn-status,#ftnn-status h1,#ftnn-status h2,#ftnn-status h3,#ftnn-status h4,#ftnn-status p,#ftnn-status span,#ftnn-status div,#ftnn-status a,#ftnn-status li,#ftnn-status strong{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif !important;}
+#ftnn-status h1,#ftnn-status h2,#ftnn-status h3,#ftnn-status h4{margin:0;text-transform:none !important;font-style:normal !important;line-height:1.2;-webkit-font-smoothing:antialiased;}
+#ftnn-status a{text-decoration:none !important;color:inherit;}
+#ftnn-status{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1A3F55;max-width:880px;margin:0 auto;padding:0 0 60px;line-height:1.6;
+  --navy:#0F3D57;--blue:#1282AD;--light:#71B4CE;--red:#D71D5A;--gray:#6b7e89;--bg:#F2F8FC;--edge:#D8EDF5;--green:#28A745;--amber:#F4A030;}
+
+/* HEADER */
+#ftnn-status .fs-head{background:var(--navy);border-radius:14px;padding:30px 32px 26px;color:#fff;position:relative;overflow:hidden;margin-bottom:18px;}
+#ftnn-status .fs-head::after{content:'';position:absolute;top:-70px;right:-70px;width:220px;height:220px;border-radius:50%;background:var(--red);opacity:.10;pointer-events:none;}
+#ftnn-status .fs-eyebrow{color:var(--light);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;}
+#ftnn-status .fs-head h1{color:#fff;font-size:27px;font-weight:800;letter-spacing:-.5px;}
+#ftnn-status .fs-updated{color:#C5DFED;font-size:13px;font-weight:500;margin-top:8px;}
+#ftnn-status .fs-updated strong{color:#fff;font-weight:700;}
+#ftnn-status .fs-legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:18px;padding-top:16px;border-top:1px solid rgba(113,180,206,.25);}
+#ftnn-status .fs-leg{display:inline-flex;align-items:center;gap:7px;color:#C5DFED;font-size:11.5px;font-weight:600;}
+#ftnn-status .fs-leg .dot{width:9px;height:9px;border-radius:50%;}
+
+/* PILLS */
+#ftnn-status .pill{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;padding:5px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+#ftnn-status .pill .pd{width:6px;height:6px;border-radius:50%;background:currentColor;}
+#ftnn-status .is-done{background:rgba(40,167,69,.12);color:#1e7e34;}
+#ftnn-status .is-active{background:rgba(18,130,173,.13);color:#0d6a8f;}
+#ftnn-status .is-next{background:rgba(244,160,48,.15);color:#b8740a;}
+#ftnn-status .is-blocked{background:rgba(215,29,90,.12);color:var(--red);}
+
+/* THIS WEEK */
+#ftnn-status .fs-week{background:#fff;border:1px solid var(--edge);border-left:5px solid var(--red);border-radius:12px;padding:20px 24px;margin-bottom:22px;}
+#ftnn-status .fs-week h3{font-size:13px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:12px;}
+#ftnn-status .fs-week ul{list-style:none;}
+#ftnn-status .fs-week li{position:relative;padding:6px 0 6px 22px;font-size:14px;color:var(--navy);font-weight:500;}
+#ftnn-status .fs-week li::before{content:'';position:absolute;left:0;top:13px;width:9px;height:9px;border-radius:50%;border:2px solid var(--red);}
+
+/* SECTION CARD */
+#ftnn-status .fs-card{background:#fff;border:1px solid var(--edge);border-radius:14px;overflow:hidden;margin-bottom:18px;box-shadow:0 2px 14px rgba(15,61,87,.05);}
+#ftnn-status .fs-card-head{display:flex;align-items:center;gap:13px;padding:18px 24px;background:var(--bg);border-bottom:1px solid var(--edge);}
+#ftnn-status .fs-card-ico{width:36px;height:36px;border-radius:9px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+#ftnn-status .fs-card-ttl{flex:1;min-width:0;}
+#ftnn-status .fs-card-ttl h2{font-size:17px;font-weight:800;color:var(--navy);letter-spacing:-.2px;}
+#ftnn-status .fs-card-ttl .sub{font-size:12px;color:var(--gray);font-weight:500;margin-top:2px;}
+
+/* ITEM ROWS */
+#ftnn-status .fs-item{display:grid;grid-template-columns:128px 1fr;gap:16px;padding:15px 24px;border-top:1px solid #EAF4FA;}
+#ftnn-status .fs-item:first-child{border-top:none;}
+#ftnn-status .fs-item-main h4{font-size:14.5px;font-weight:700;color:var(--navy);}
+#ftnn-status .fs-item-main p{font-size:13px;color:#4a6a7a;margin-top:3px;line-height:1.55;}
+#ftnn-status .fs-item-main p a{color:var(--blue);font-weight:600;}
+#ftnn-status .fs-next{display:inline-block;margin-top:7px;font-size:11.5px;color:var(--gray);font-weight:600;}
+#ftnn-status .fs-next b{color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:10px;margin-right:5px;}
+#ftnn-status .fs-todo{background:rgba(244,160,48,.10);border:1px dashed var(--amber);border-radius:8px;padding:10px 14px;font-size:12.5px;color:#946007;}
+
+#ftnn-status .fs-foot{text-align:center;font-size:11.5px;color:var(--gray);margin-top:8px;}
+#ftnn-status .fs-foot b{color:var(--navy);}
+
+@media(max-width:600px){
+  #ftnn-status .fs-item{grid-template-columns:1fr;gap:8px;}
+  #ftnn-status .fs-head{padding:24px 20px;}
+}
+</style>
+
+<!-- ========== HEADER ========== -->
+<div class="fs-head">
+  <div class="fs-eyebrow">Fetal Therapy Nurse Network</div>
+  <h1>Status &amp; Open Items</h1>
+  <div class="fs-updated">Working dashboard &nbsp;·&nbsp; Last updated <strong class="fs-date">June 22, 2026</strong> &nbsp;·&nbsp; maintained by Gary Ricke</div>
+  <div class="fs-legend">
+    <span class="fs-leg"><span class="dot" style="background:#2fcf57;"></span>Done</span>
+    <span class="fs-leg"><span class="dot" style="background:#33b4e0;"></span>In progress</span>
+    <span class="fs-leg"><span class="dot" style="background:#F4A030;"></span>Up next</span>
+    <span class="fs-leg"><span class="dot" style="background:#D71D5A;"></span>Blocked / needs input</span>
+  </div>
+</div>
+
+<!-- ========== THIS WEEK ========== -->
+<div class="fs-week">
+  <h3>This week's focus</h3>
+  <ul>
+    <li>Ship <strong>Episode 4</strong> — send to Kris for review, then publish to Squarespace.</li>
+    <li><strong>Conference:</strong> link the 2026 Sponsorship/Exhibitor Prospectus on the conference site, and create a simpler conference logo for merch.</li>
+    <li><strong>Website:</strong> post the updated Bylaws (amended 9/25) and link the latest newsletter.</li>
+    <li>Stand up this status page and settle into a weekly update rhythm.</li>
+  </ul>
+</div>
+
+<!-- ========== 1. PODCAST ========== -->
+<div class="fs-card">
+  <div class="fs-card-head">
+    <div class="fs-card-ico"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg></div>
+    <div class="fs-card-ttl"><h2>Podcast — The Fetal Frontline</h2><div class="sub">Monthly · host Kris Rimbos · Squarespace → Apple, Spotify</div></div>
+    <span class="pill is-active"><span class="pd"></span>Active</span>
+  </div>
+
+  <div class="fs-item">
+    <div><span class="pill is-active"><span class="pd"></span>Ready to ship</span></div>
+    <div class="fs-item-main">
+      <h4>Ep 4 — “Before Birth: A Conversation with the Father of Fetal Surgery”</h4>
+      <p>Dr. Michael Harrison. Page built, audio dropout (~12:00) cleaned and the corrected file published, 3000² cover and full show notes done. Review email to Kris drafted.</p>
+      <span class="fs-next"><b>Next</b> Send review email → incorporate Kris's feedback → publish the page block to Squarespace.</span>
+    </div>
+  </div>
+
+  <div class="fs-item">
+    <div><span class="pill is-next"><span class="pd"></span>Up next</span></div>
+    <div class="fs-item-main">
+      <h4>Reset Podcast header formatting (mobile)</h4>
+      <p>Per Kris (6/10): fix the Podcast header so other headers aren't truncated in mobile view.</p>
+      <span class="fs-next"><b>Next</b> Adjust the header block / responsive styles and verify on mobile.</span>
+    </div>
+  </div>
+
+  <div class="fs-item">
+    <div><span class="pill is-next"><span class="pd"></span>To scope</span></div>
+    <div class="fs-item-main">
+      <h4>Ep 5 — guest &amp; topic</h4>
+      <p>Not yet scoped. Decide guest, record date, and theme to hold the monthly cadence.</p>
+      <span class="fs-next"><b>Needs</b> Kris to confirm next guest / topic.</span>
+    </div>
+  </div>
+
+  <div class="fs-item">
+    <div><span class="pill is-done"><span class="pd"></span>Published</span></div>
+    <div class="fs-item-main">
+      <h4>Ep 1–3 — live</h4>
+      <p>Ep 1 “The History of FTNN” (Kris &amp; Katie) · Ep 2 “Where Compassion Meets Innovation” (Melissa Dorn) · Ep 3 “Hope, Advocacy, and Healing” (Beth Moorhouse).</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 2. COMPETENCY WORK ========== -->
+<div class="fs-card">
+  <div class="fs-card-head">
+    <div class="fs-card-ico" style="background:var(--navy);"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+    <div class="fs-card-ttl"><h2>Competency Work</h2><div class="sub">Clinical competency materials &amp; tools</div></div>
+    <span class="pill is-blocked"><span class="pd"></span>Needs input</span>
+  </div>
+
+  <div class="fs-item">
+    <div><span class="pill is-next"><span class="pd"></span>To scope</span></div>
+    <div class="fs-item-main">
+      <div class="fs-todo"><strong>Gary — share the details and I'll build this out.</strong> What are the competency deliverables, and where does each stand? I'll add one row per piece of work (what it is, status, next step), matching the rows above.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 3. CONFERENCE ========== -->
+<div class="fs-card">
+  <div class="fs-card-head">
+    <div class="fs-card-ico" style="background:var(--red);"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+    <div class="fs-card-ttl"><h2>Conference — Fetal Week 2026</h2><div class="sub">FTNN Annual Conference · Oct 13–14, 2026 · Hyatt Regency McCormick Place, Chicago</div></div>
+    <span class="pill is-active"><span class="pd"></span>Active</span>
+  </div>
+
+  <div class="fs-item">
+    <div><span class="pill is-done"><span class="pd"></span>Live</span></div>
+    <div class="fs-item-main">
+      <h4>Conference page &amp; dates set</h4>
+      <p>FTNN Annual Conference Oct 13–14, part of <strong>Fetal Week 2026</strong> (Oct 13–16) alongside the NAFTNet Annual Meeting (Oct 15–16), Chicago. <a href="https://www.fetaltherapynursenetwork.org/ftnn-2026-conference" target="_blank" rel="noopener">View the conference page →</a></p>
+    </div>
+  </div>
+
+  <div class="fs-item">
+    <div><span class="pill is-next"><span class="pd"></span>Up next</span></div>
+    <div class="fs-item-main">
+      <h4>Link the Sponsorship / Exhibitor Prospectus</h4>
+      <p>Add the finalized 2026 Sponsorship Prospectus to the conference site so partners can download it.</p>
+      <span class="fs-next"><b>Next</b> Upload the PDF and link it on the conference page.</span>
+    </div>
+  </div>
+
+  <div class="fs-item">
+    <div><span class="pill is-next"><span class="pd"></span>Up next</span></div>
+    <div class="fs-item-main">
+      <h4>Simpler conference logo graphic</h4>
+      <p>A simplified, print-friendly version of the FTNN Conference logo for T-shirts, water bottles, and other merch.</p>
+      <span class="fs-next"><b>Next</b> Produce a flat / single-color logo variant and share for approval.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 4. WEBSITE & GENERAL ========== -->
+<div class="fs-card">
+  <div class="fs-card-head">
+    <div class="fs-card-ico" style="background:var(--light);color:var(--navy);"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+    <div class="fs-card-ttl"><h2>Website &amp; General</h2><div class="sub">FTNN site updates &amp; requests</div></div>
+    <span class="pill is-next"><span class="pd"></span>Up next</span>
+  </div>
+
+  <div class="fs-item">
+    <div><span class="pill is-next"><span class="pd"></span>Up next</span></div>
+    <div class="fs-item-main">
+      <h4>Post updated FTNN Bylaws</h4>
+      <p>Publish the updated bylaws (amended 9/25) to the website and refresh the link under Docs.</p>
+      <span class="fs-next"><b>Next</b> Upload the new bylaws file and update the Docs link.</span>
+    </div>
+  </div>
+
+  <div class="fs-item">
+    <div><span class="pill is-next"><span class="pd"></span>Up next</span></div>
+    <div class="fs-item-main">
+      <h4>Link the latest newsletter</h4>
+      <p>Add the latest FTNN newsletter (sent from Kris's FTNN email) to the site.</p>
+      <span class="fs-next"><b>Next</b> Upload and link the newsletter on the website.</span>
+    </div>
+  </div>
+
+  <div class="fs-item">
+    <div><span class="pill is-done"><span class="pd"></span>Cancelled</span></div>
+    <div class="fs-item-main">
+      <h4>SIG folders on the Discussion Forum</h4>
+      <p>No longer needed — per Kris, these groups are converting to Teams, which has built-in chat.</p>
+    </div>
+  </div>
+</div>
+
+<div class="fs-foot">Updates push automatically from Git — edit <b>ftnn-status.html</b>, commit, and push.</div>
+
+</div>
