@@ -48,6 +48,36 @@
 #ftnn-status .fs-bstat .l{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--blue);margin-top:5px;}
 #ftnn-status .fs-bnote{font-size:12px;color:#4a6a7a;line-height:1.55;}
 
+/* BUDGET DETAIL MODAL (CSS-only, works without JS) */
+#ftnn-status .fs-modal-toggle{position:absolute;opacity:0;width:0;height:0;pointer-events:none;}
+#ftnn-status .fs-detail-btn{display:inline-flex;align-items:center;gap:7px;margin-top:14px;background:var(--navy);color:#fff;border-radius:22px;padding:9px 16px;font-size:12px;font-weight:700;cursor:pointer;transition:background .15s;}
+#ftnn-status .fs-detail-btn:hover{background:#0b2f44;}
+#ftnn-status .fs-ovl{display:none;position:fixed;inset:0;background:rgba(15,61,87,.75);z-index:10000;align-items:center;justify-content:center;padding:20px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
+#ftnn-status .fs-modal-toggle:checked ~ .fs-ovl{display:flex;}
+#ftnn-status .fs-modal{background:#fff;border-radius:16px;max-width:640px;width:100%;max-height:86vh;overflow-y:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.35);}
+#ftnn-status .fs-modal-head{background:var(--navy);color:#fff;padding:22px 26px;border-radius:16px 16px 0 0;position:sticky;top:0;}
+#ftnn-status .fs-modal-head h3{font-size:19px;font-weight:800;}
+#ftnn-status .fs-modal-head .sub{font-size:12px;color:var(--light);margin-top:4px;}
+#ftnn-status .fs-modal-x{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;cursor:pointer;}
+#ftnn-status .fs-modal-x:hover{background:var(--red);}
+#ftnn-status .fs-modal-body{padding:22px 26px 26px;}
+#ftnn-status .fs-modal-body h4{font-size:12px;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:1px;margin:0 0 14px;}
+#ftnn-status .fs-modal-body h4.mt{margin-top:26px;}
+#ftnn-status .fs-bar-row{display:grid;grid-template-columns:52px 1fr 42px;gap:10px;align-items:center;margin-bottom:7px;}
+#ftnn-status .fs-bar-lab{font-size:11px;font-weight:700;color:var(--gray);text-align:right;font-variant-numeric:tabular-nums;}
+#ftnn-status .fs-bar-track{height:14px;background:#E1EEF6;border-radius:7px;overflow:hidden;}
+#ftnn-status .fs-bar-fill{height:100%;border-radius:7px;background:linear-gradient(90deg,var(--blue),var(--navy));min-width:3px;}
+#ftnn-status .fs-bar-val{font-size:11px;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;}
+#ftnn-status .fs-bar-note{font-size:11.5px;color:var(--gray);margin-top:10px;}
+#ftnn-status .fs-tl2{list-style:none;padding:0;margin:0;}
+#ftnn-status .fs-tl2 li{position:relative;padding:0 0 16px 22px;border-left:2px solid var(--edge);margin-left:6px;}
+#ftnn-status .fs-tl2 li:last-child{border-left-color:transparent;padding-bottom:0;}
+#ftnn-status .fs-tl2 li::before{content:'';position:absolute;left:-7px;top:2px;width:12px;height:12px;border-radius:50%;background:var(--blue);border:2px solid #fff;box-shadow:0 0 0 1px var(--light);}
+#ftnn-status .fs-tl2 li.accent::before{background:var(--red);}
+#ftnn-status .fs-tl2 .dt{font-size:11px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:.6px;}
+#ftnn-status .fs-tl2 .tx{font-size:12.5px;color:#1A3F55;line-height:1.5;margin-top:2px;}
+#ftnn-status .fs-tl2 .tx strong{color:var(--navy);}
+
 /* THIS WEEK */
 #ftnn-status .fs-week{background:#fff;border:1px solid var(--edge);border-left:5px solid var(--red);border-radius:12px;padding:20px 24px;margin-bottom:22px;}
 #ftnn-status .fs-week h3{font-size:13px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:12px;}
@@ -81,6 +111,8 @@
   #ftnn-status .fs-head{padding:24px 20px;}
 }
 </style>
+
+<input type="checkbox" id="fs-bud-modal" class="fs-modal-toggle" aria-hidden="true">
 
 <!-- ========== HEADER ========== -->
 <div class="fs-head">
@@ -122,6 +154,7 @@
       <div class="fs-bstat"><div class="v"><span id="fs-bud-elapsed">117</span><small> d</small></div><div class="l">Elapsed</div></div>
     </div>
     <p class="fs-bnote" id="fs-bud-note">Prepaid block: <strong>67 h · $5,000</strong> (Invoice 03043701, paid Feb 25, 2026, ≈ $74.63/h). Less <strong>21 h</strong> overage rolled in at approval = <strong>46 h net</strong> to work with. <strong>35.8 h</strong> used, ~<strong>10 h (~$760)</strong> left · <strong>117 days</strong> elapsed since the block began. Snapshot June 22, 2026 — updates live once the Netlify function is connected.</p>
+    <label for="fs-bud-modal" class="fs-detail-btn"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>View detail &amp; history</label>
   </div>
 </div>
 
@@ -280,5 +313,41 @@
 </div>
 
 <div class="fs-foot">Updates push automatically from Git — edit <b>ftnn-status.html</b>, commit, and push.</div>
+
+<!-- ========== BUDGET DETAIL MODAL ========== -->
+<div class="fs-ovl">
+  <div class="fs-modal">
+    <div class="fs-modal-head">
+      <label for="fs-bud-modal" class="fs-modal-x" aria-label="Close">×</label>
+      <h3>Budget detail</h3>
+      <div class="sub">How the maintenance hours have been used</div>
+    </div>
+    <div class="fs-modal-body">
+      <h4>Hours used by week</h4>
+      <div id="fs-bud-weeks">
+        <div class="fs-bar-row"><span class="fs-bar-lab">Mar 2</span><span class="fs-bar-track"><span class="fs-bar-fill" style="width:63%"></span></span><span class="fs-bar-val">6.5h</span></div>
+        <div class="fs-bar-row"><span class="fs-bar-lab">Mar 16</span><span class="fs-bar-track"><span class="fs-bar-fill" style="width:40%"></span></span><span class="fs-bar-val">4.0h</span></div>
+        <div class="fs-bar-row"><span class="fs-bar-lab">Apr 13</span><span class="fs-bar-track"><span class="fs-bar-fill" style="width:5%"></span></span><span class="fs-bar-val">0.5h</span></div>
+        <div class="fs-bar-row"><span class="fs-bar-lab">Apr 20</span><span class="fs-bar-track"><span class="fs-bar-fill" style="width:21%"></span></span><span class="fs-bar-val">2.1h</span></div>
+        <div class="fs-bar-row"><span class="fs-bar-lab">Apr 27</span><span class="fs-bar-track"><span class="fs-bar-fill" style="width:20%"></span></span><span class="fs-bar-val">2.0h</span></div>
+        <div class="fs-bar-row"><span class="fs-bar-lab">May 4</span><span class="fs-bar-track"><span class="fs-bar-fill" style="width:12%"></span></span><span class="fs-bar-val">1.2h</span></div>
+        <div class="fs-bar-row"><span class="fs-bar-lab">May 18</span><span class="fs-bar-track"><span class="fs-bar-fill" style="width:12%"></span></span><span class="fs-bar-val">1.3h</span></div>
+        <div class="fs-bar-row"><span class="fs-bar-lab">May 25</span><span class="fs-bar-track"><span class="fs-bar-fill" style="width:44%"></span></span><span class="fs-bar-val">4.4h</span></div>
+        <div class="fs-bar-row"><span class="fs-bar-lab">Jun 1</span><span class="fs-bar-track"><span class="fs-bar-fill" style="width:100%"></span></span><span class="fs-bar-val">10.2h</span></div>
+        <div class="fs-bar-row"><span class="fs-bar-lab">Jun 8</span><span class="fs-bar-track"><span class="fs-bar-fill" style="width:14%"></span></span><span class="fs-bar-val">1.5h</span></div>
+        <div class="fs-bar-row"><span class="fs-bar-lab">Jun 22</span><span class="fs-bar-track"><span class="fs-bar-fill" style="width:30%"></span></span><span class="fs-bar-val">3.1h</span></div>
+      </div>
+      <div class="fs-bar-note" id="fs-bud-weeks-note">Total tracked to date: ~35.8 h on the current block (live from Clockify “FTNN 2”). The Jun 1 week reflects the Episode 4 production push.</div>
+
+      <h4 class="mt">Budget &amp; approval history</h4>
+      <ul class="fs-tl2">
+        <li class="accent"><div class="dt">Oct 22, 2024</div><div class="tx">Paid <strong>$4,000</strong> for <strong>50 h</strong> at $80/h. About 15 h of prior overage was rolled into that block.</div></li>
+        <li><div class="dt">Mar 28, 2025</div><div class="tx">Status check: <strong>56 h</strong> logged since 11/1/24 → <strong>71 h total</strong>, i.e. <strong>21 h over</strong> the 50 h. Gary shared the maintenance-package options.</div></li>
+        <li class="accent"><div class="dt">Apr 1, 2025</div><div class="tx">Kris approved the <strong>$5,000 · 67 h · $75/h</strong> package. The <strong>21 h owed was taken “off the top”</strong> → <strong>46 h net</strong> to work with for future projects/updates.</div></li>
+        <li><div class="dt">Feb 25, 2026</div><div class="tx">Current block prepaid &amp; invoiced — <strong>67 h · $5,000</strong> (Invoice 03043701), tracked in Clockify “FTNN 2”.</div></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 </div>

@@ -54,6 +54,37 @@ exports.handler = async function () {
     if (!proj) throw new Error("Project not found: " + PROJECT);
 
     const used = isoHours(proj.duration);
+
+    // --- hours by week (Monday-start) from individual time entries ---
+    const weekStart = (iso) => {
+      const dt = new Date(iso);
+      const d = new Date(Date.UTC(dt.getUTCFullYear(), dt.getUTCMonth(), dt.getUTCDate()));
+      const day = d.getUTCDay() || 7;
+      d.setUTCDate(d.getUTCDate() - (day - 1));
+      return d.toISOString().slice(0, 10);
+    };
+    const weekMap = {};
+    try {
+      const users = await cf(`/workspaces/${wid}/users`);
+      for (const u of users) {
+        let pg = 1;
+        for (;;) {
+          const batch = await cf(`/workspaces/${wid}/user/${u.id}/time-entries?project=${proj.id}&page=${pg}&page-size=200`);
+          if (!batch.length) break;
+          for (const e of batch) {
+            const s = e.timeInterval && e.timeInterval.start;
+            if (!s) continue;
+            const h = isoHours(e.timeInterval.duration);
+            const w = weekStart(s);
+            weekMap[w] = (weekMap[w] || 0) + h;
+          }
+          if (batch.length < 200) break;
+          pg++;
+        }
+      }
+    } catch (e) { /* weekly is best-effort; meter still works */ }
+    const byWeek = Object.keys(weekMap).sort().map((w) => ({ weekStart: w, hours: +weekMap[w].toFixed(2) }));
+
     const net = BLOCK - OVERAGE;
     const remaining = net - used;
     const pctUsed = net > 0 ? (used / net) * 100 : 0;
@@ -78,6 +109,7 @@ exports.handler = async function () {
         dollarsRemaining: Math.round(remaining * RATE),
         blockStart: START,
         elapsedDays,
+        byWeek,
         asOf: new Date().toISOString(),
       }),
     };

@@ -52,6 +52,22 @@
           var asof = new Date(b.asOf).toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
           note.innerHTML = "Prepaid block: <strong>" + b.blockHours + " h · $5,000</strong> (Invoice 03043701, ≈ $" + b.rate.toFixed(2) + "/h). Less <strong>" + b.overageHours + " h</strong> overage rolled in at approval = <strong>" + b.netHours + " h net</strong>. <strong>" + b.usedHours.toFixed(1) + " h</strong> used, ~<strong>" + b.remainingHours.toFixed(1) + " h (~$" + b.dollarsRemaining.toLocaleString() + ")</strong> left · <strong>" + b.elapsedDays + " days</strong> elapsed. Live from Clockify “" + b.project + "” · updated " + asof + ".";
         }
+        // weekly bar chart in the detail modal
+        if (b.byWeek && b.byWeek.length) {
+          var wc = $("fs-bud-weeks");
+          if (wc) {
+            var mon = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+            var mx = b.byWeek.reduce(function(a,w){ return Math.max(a, w.hours); }, 0) || 1;
+            wc.innerHTML = b.byWeek.map(function(w){
+              var d = new Date(w.weekStart + "T00:00:00Z");
+              var lab = mon[d.getUTCMonth()] + " " + d.getUTCDate();
+              var pct = Math.max(2, Math.round(w.hours / mx * 100));
+              return '<div class="fs-bar-row"><span class="fs-bar-lab">' + lab + '</span><span class="fs-bar-track"><span class="fs-bar-fill" style="width:' + pct + '%"></span></span><span class="fs-bar-val">' + w.hours.toFixed(1) + 'h</span></div>';
+            }).join("");
+          }
+          var wn = $("fs-bud-weeks-note");
+          if (wn) wn.textContent = "Total tracked to date: " + b.usedHours.toFixed(1) + " h on the current block — live from Clockify “" + b.project + "”.";
+        }
       })
       .catch(function(e){ console.warn("budget fetch failed:", e); });
   }
