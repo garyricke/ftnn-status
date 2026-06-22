@@ -40,7 +40,7 @@
 #ftnn-status .fs-meter-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,#28A745,#1282AD);}
 #ftnn-status .fs-meter-scale{display:flex;justify-content:space-between;font-size:10.5px;color:var(--gray);font-weight:600;margin-top:6px;font-variant-numeric:tabular-nums;}
 #ftnn-status .fs-meter-scale .mid{color:var(--navy);font-weight:800;}
-#ftnn-status .fs-bstats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 14px;}
+#ftnn-status .fs-bstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(86px,1fr));gap:12px;margin:16px 0 14px;}
 #ftnn-status .fs-bstat{background:var(--bg);border:1px solid var(--edge);border-radius:10px;padding:12px 10px;text-align:center;}
 #ftnn-status .fs-bstat .v{font-size:22px;font-weight:800;color:var(--navy);line-height:1;letter-spacing:-.5px;}
 #ftnn-status .fs-bstat .v small{font-size:12px;font-weight:700;color:var(--gray);}
@@ -109,18 +109,19 @@
 <div class="fs-card">
   <div class="fs-card-head">
     <div class="fs-card-ico" style="background:var(--green);"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-    <div class="fs-card-ttl"><h2>Maintenance Budget</h2><div class="sub">Prepaid hourly block · hours tracked live in Clockify (“FTNN 2”)</div></div>
-    <span class="pill is-active"><span class="pd"></span>53% used</span>
+    <div class="fs-card-ttl"><h2>Maintenance Budget</h2><div class="sub">Prepaid hourly block · hours live from Clockify (“FTNN 2”)</div></div>
+    <span class="pill is-next" id="fs-bud-pill"><span class="pd"></span><span id="fs-bud-pct">78</span>% used</span>
   </div>
   <div class="fs-budget">
-    <div class="fs-meter"><div class="fs-meter-fill" style="width:53%;"></div></div>
-    <div class="fs-meter-scale"><span>0 h</span><span class="mid">35.8 h used · 53%</span><span>67 h</span></div>
+    <div class="fs-meter"><div class="fs-meter-fill" id="fs-bud-meter" style="width:78%;background:linear-gradient(90deg,#F4A030,#D71D5A);"></div></div>
+    <div class="fs-meter-scale"><span>0 h</span><span class="mid" id="fs-bud-mid">35.8 h used · 78% of net</span><span id="fs-bud-netend">46 h net</span></div>
     <div class="fs-bstats">
-      <div class="fs-bstat"><div class="v">35.8<small> h</small></div><div class="l">Used</div></div>
-      <div class="fs-bstat rem"><div class="v">31.2<small> h</small></div><div class="l">Remaining</div></div>
-      <div class="fs-bstat"><div class="v">67<small> h</small></div><div class="l">Block total</div></div>
+      <div class="fs-bstat"><div class="v"><span id="fs-bud-used">35.8</span><small> h</small></div><div class="l">Used</div></div>
+      <div class="fs-bstat rem"><div class="v"><span id="fs-bud-remaining">10.2</span><small> h</small></div><div class="l">Remaining</div></div>
+      <div class="fs-bstat"><div class="v"><span id="fs-bud-net">46</span><small> h</small></div><div class="l">Net available</div></div>
+      <div class="fs-bstat"><div class="v"><span id="fs-bud-elapsed">117</span><small> d</small></div><div class="l">Elapsed</div></div>
     </div>
-    <p class="fs-bnote">Prepaid maintenance block: <strong>67 hours · $5,000</strong> (Invoice 03043701, paid Feb 25, 2026, ≈ $74.63/h). About <strong>31 hours (~$2,330)</strong> remaining. Hours used are pulled from the Clockify <em>FTNN 2</em> project — snapshot as of June 22, 2026.</p>
+    <p class="fs-bnote" id="fs-bud-note">Prepaid block: <strong>67 h · $5,000</strong> (Invoice 03043701, paid Feb 25, 2026, ≈ $74.63/h). Less <strong>21 h</strong> overage rolled in at approval = <strong>46 h net</strong> to work with. <strong>35.8 h</strong> used, ~<strong>10 h (~$760)</strong> left · <strong>117 days</strong> elapsed since the block began. Snapshot June 22, 2026 — updates live once the Netlify function is connected.</p>
   </div>
 </div>
 

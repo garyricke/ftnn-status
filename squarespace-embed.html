@@ -1,22 +1,59 @@
 <!-- =====================================================================
      SQUARESPACE  /status  PAGE — paste this ONCE into a Code Block.
-     You never need to touch it again: it always pulls the latest
-     ftnn-status.html from GitHub Pages.
+     It always pulls the latest status from GitHub Pages, and the live
+     budget numbers from the Netlify function (Clockify key stays server-side).
 
-     This is wired to garyricke/ftnn-status — paste as-is into the
-     /status page Code Block. (No edits needed.)
+     >>> ONE edit: set BUDGET_URL below to your Netlify site, e.g.
+         https://ftnn.netlify.app/.netlify/functions/ftnn-budget
+         (Leave it as-is until Netlify is set up — the page still works,
+          showing the static budget snapshot from ftnn-status.html.)
      ===================================================================== -->
 <div id="ftnn-status-mount" style="min-height:200px;font-family:-apple-system,Segoe UI,sans-serif;color:#6b7e89;padding:24px;">Loading status…</div>
 <script>
 (function(){
   var STATUS_URL = "https://garyricke.github.io/ftnn-status/ftnn-status.html";
+  var BUDGET_URL = "https://YOUR-NETLIFY-SITE.netlify.app/.netlify/functions/ftnn-budget";
   var mount = document.getElementById("ftnn-status-mount");
+
   fetch(STATUS_URL + "?v=" + Date.now(), {cache:"no-store"})
     .then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); })
-    .then(function(html){ mount.innerHTML = html; })
+    .then(function(html){ mount.innerHTML = html; loadBudget(); })
     .catch(function(e){
       mount.innerHTML = '<p style="color:#b42318;padding:24px;">Status is temporarily unavailable. Please refresh in a moment.</p>';
       console.error("FTNN status load failed:", e);
     });
+
+  function loadBudget(){
+    if (BUDGET_URL.indexOf("YOUR-NETLIFY-SITE") !== -1) return; // not wired yet — keep static snapshot
+    fetch(BUDGET_URL + "?v=" + Date.now(), {cache:"no-store"})
+      .then(function(r){ return r.json(); })
+      .then(function(b){
+        if (!b || b.error) { if (b && b.error) console.warn("budget:", b.error); return; }
+        var $ = function(id){ return document.getElementById(id); };
+        var pct = Math.round(b.pctUsed);
+        var set = function(id, v){ var el=$(id); if(el) el.textContent=v; };
+        set("fs-bud-pct", pct);
+        set("fs-bud-used", b.usedHours.toFixed(1));
+        set("fs-bud-remaining", b.remainingHours.toFixed(1));
+        set("fs-bud-net", b.netHours);
+        set("fs-bud-elapsed", b.elapsedDays);
+        set("fs-bud-netend", b.netHours + " h net");
+        set("fs-bud-mid", b.usedHours.toFixed(1) + " h used · " + pct + "% of net");
+        var meter = $("fs-bud-meter");
+        if (meter){
+          meter.style.width = Math.max(0, Math.min(100, b.pctUsed)) + "%";
+          meter.style.background = pct>=90 ? "#D71D5A"
+            : pct>=75 ? "linear-gradient(90deg,#F4A030,#D71D5A)"
+            : pct>=50 ? "linear-gradient(90deg,#28A745,#1282AD)"
+            : "linear-gradient(90deg,#28A745,#28A745)";
+        }
+        var note = $("fs-bud-note");
+        if (note){
+          var asof = new Date(b.asOf).toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
+          note.innerHTML = "Prepaid block: <strong>" + b.blockHours + " h · $5,000</strong> (Invoice 03043701, ≈ $" + b.rate.toFixed(2) + "/h). Less <strong>" + b.overageHours + " h</strong> overage rolled in at approval = <strong>" + b.netHours + " h net</strong>. <strong>" + b.usedHours.toFixed(1) + " h</strong> used, ~<strong>" + b.remainingHours.toFixed(1) + " h (~$" + b.dollarsRemaining.toLocaleString() + ")</strong> left · <strong>" + b.elapsedDays + " days</strong> elapsed. Live from Clockify “" + b.project + "” · updated " + asof + ".";
+        }
+      })
+      .catch(function(e){ console.warn("budget fetch failed:", e); });
+  }
 })();
 </script>

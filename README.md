@@ -78,6 +78,33 @@ cache-buster, so visitors always get the latest.)
 
 ---
 
+## Real-time budget (Netlify function)
+
+The budget card can show **live** Clockify hours without exposing the API key on
+the public page. The key lives only in a Netlify environment variable; a small
+function reads Clockify server-side and returns just the budget JSON.
+
+**One-time setup:**
+1. Go to netlify.com → **Add new site → Import an existing project** → pick the
+   `garyricke/ftnn-status` GitHub repo. (Netlify reads `netlify.toml` and deploys
+   `netlify/functions/ftnn-budget.js`.)
+2. In the new site: **Site settings → Environment variables → Add** —
+   `CLOCKIFY_API_KEY` = *(your Clockify API key)*. Redeploy.
+   Optional overrides (defaults in parentheses): `FTNN_OVERAGE_HOURS` (21),
+   `FTNN_BLOCK_HOURS` (67), `FTNN_BLOCK_START` (2026-02-25), `FTNN_RATE` (74.6268),
+   `FTNN_PROJECT_NAME` ("FTNN 2").
+3. Your function URL is `https://<your-site>.netlify.app/.netlify/functions/ftnn-budget`
+   — test it in a browser; it should return budget JSON.
+4. In `squarespace-embed.html`, set `BUDGET_URL` to that URL and re-paste into the
+   `/status` Code Block. Done — the budget card now updates live on every page load.
+
+> The key is **never** sent to the browser. If `BUDGET_URL` is left as the
+> placeholder, the page just shows the static snapshot baked into `ftnn-status.html`.
+
+To change the budget assumptions (e.g. the overage), set the env vars above — no
+code change needed. The static snapshot in `ftnn-status.html` is the fallback;
+update those numbers when you refresh the page manually.
+
 ## Alternative hosting (no GitHub Pages)
 If you'd rather not enable Pages, point `STATUS_URL` in the embed at jsDelivr:
 `https://cdn.jsdelivr.net/gh/garyricke/ftnn-status@main/ftnn-status.html`

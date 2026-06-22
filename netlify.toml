@@ -1,0 +1,9 @@
+# Netlify config. Netlify serves the repo statically AND runs the function that
+# holds the Clockify key. (GitHub Pages can keep serving ftnn-status.html too —
+# the /status loader only calls Netlify for the live budget JSON.)
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
