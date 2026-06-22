@@ -34,6 +34,20 @@
 #ftnn-status .is-next{background:rgba(244,160,48,.15);color:#b8740a;}
 #ftnn-status .is-blocked{background:rgba(215,29,90,.12);color:var(--red);}
 
+/* BUDGET METER */
+#ftnn-status .fs-budget{padding:20px 24px 22px;}
+#ftnn-status .fs-meter{height:14px;background:#EAF4FA;border-radius:8px;overflow:hidden;position:relative;}
+#ftnn-status .fs-meter-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,#28A745,#1282AD);}
+#ftnn-status .fs-meter-scale{display:flex;justify-content:space-between;font-size:10.5px;color:var(--gray);font-weight:600;margin-top:6px;font-variant-numeric:tabular-nums;}
+#ftnn-status .fs-meter-scale .mid{color:var(--navy);font-weight:800;}
+#ftnn-status .fs-bstats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 14px;}
+#ftnn-status .fs-bstat{background:var(--bg);border:1px solid var(--edge);border-radius:10px;padding:12px 10px;text-align:center;}
+#ftnn-status .fs-bstat .v{font-size:22px;font-weight:800;color:var(--navy);line-height:1;letter-spacing:-.5px;}
+#ftnn-status .fs-bstat .v small{font-size:12px;font-weight:700;color:var(--gray);}
+#ftnn-status .fs-bstat.rem .v{color:#1e7e34;}
+#ftnn-status .fs-bstat .l{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--blue);margin-top:5px;}
+#ftnn-status .fs-bnote{font-size:12px;color:#4a6a7a;line-height:1.55;}
+
 /* THIS WEEK */
 #ftnn-status .fs-week{background:#fff;border:1px solid var(--edge);border-left:5px solid var(--red);border-radius:12px;padding:20px 24px;margin-bottom:22px;}
 #ftnn-status .fs-week h3{font-size:13px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:12px;}
@@ -89,6 +103,25 @@
     <li><strong>Conference:</strong> link the 2026 Sponsorship/Exhibitor Prospectus on the conference site, and create a simpler conference logo for merch.</li>
     <li>Stand up this status page and settle into a weekly update rhythm.</li>
   </ul>
+</div>
+
+<!-- ========== BUDGET ========== -->
+<div class="fs-card">
+  <div class="fs-card-head">
+    <div class="fs-card-ico" style="background:var(--green);"><svg width="19" height="19" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+    <div class="fs-card-ttl"><h2>Maintenance Budget</h2><div class="sub">Prepaid hourly block · hours tracked live in Clockify (“FTNN 2”)</div></div>
+    <span class="pill is-active"><span class="pd"></span>53% used</span>
+  </div>
+  <div class="fs-budget">
+    <div class="fs-meter"><div class="fs-meter-fill" style="width:53%;"></div></div>
+    <div class="fs-meter-scale"><span>0 h</span><span class="mid">35.8 h used · 53%</span><span>67 h</span></div>
+    <div class="fs-bstats">
+      <div class="fs-bstat"><div class="v">35.8<small> h</small></div><div class="l">Used</div></div>
+      <div class="fs-bstat rem"><div class="v">31.2<small> h</small></div><div class="l">Remaining</div></div>
+      <div class="fs-bstat"><div class="v">67<small> h</small></div><div class="l">Block total</div></div>
+    </div>
+    <p class="fs-bnote">Prepaid maintenance block: <strong>67 hours · $5,000</strong> (Invoice 03043701, paid Feb 25, 2026, ≈ $74.63/h). About <strong>31 hours (~$2,330)</strong> remaining. Hours used are pulled from the Clockify <em>FTNN 2</em> project — snapshot as of June 22, 2026.</p>
+  </div>
 </div>
 
 <!-- ========== 1. PODCAST ========== -->
