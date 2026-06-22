@@ -50,8 +50,15 @@
 
 /* BUDGET DETAIL MODAL (CSS-only, works without JS) */
 #ftnn-status .fs-modal-toggle{position:absolute;opacity:0;width:0;height:0;pointer-events:none;}
-#ftnn-status .fs-detail-btn{display:inline-flex;align-items:center;gap:7px;margin-top:14px;background:var(--navy);color:#fff;border-radius:22px;padding:9px 16px;font-size:12px;font-weight:700;cursor:pointer;transition:background .15s;}
-#ftnn-status .fs-detail-btn:hover{background:#0b2f44;}
+#ftnn-status .fs-detail-btn{display:inline-flex;align-items:center;gap:9px;margin-top:18px;background:var(--red);color:#fff;border-radius:26px;padding:13px 22px;font-size:13.5px;font-weight:800;cursor:pointer;letter-spacing:.2px;box-shadow:0 4px 16px rgba(215,29,90,.35);transition:transform .15s,box-shadow .15s,background .15s;animation:fs-btn-glow 2.4s ease-in-out infinite;}
+#ftnn-status .fs-detail-btn:hover{background:#B81850;transform:translateY(-2px);box-shadow:0 7px 24px rgba(215,29,90,.5);animation:none;}
+#ftnn-status .fs-detail-btn .pulse{width:8px;height:8px;border-radius:50%;background:#fff;animation:fs-pulse 1.8s infinite;flex-shrink:0;}
+#ftnn-status .fs-detail-btn .arr{transition:transform .15s;}
+#ftnn-status .fs-detail-btn:hover .arr{transform:translateX(3px);}
+@keyframes fs-pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(255,255,255,.65);}50%{opacity:.55;box-shadow:0 0 0 6px rgba(255,255,255,0);}}
+@keyframes fs-btn-glow{0%,100%{box-shadow:0 4px 16px rgba(215,29,90,.35);}50%{box-shadow:0 4px 22px rgba(215,29,90,.6);}}
+#ftnn-status .fs-bar-anno{font-size:12px;color:#1A3F55;background:var(--bg);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:10px 14px;margin-top:12px;line-height:1.5;}
+#ftnn-status .fs-bar-anno strong{color:var(--red);}
 #ftnn-status .fs-ovl{display:none;position:fixed;inset:0;background:rgba(15,61,87,.75);z-index:10000;align-items:center;justify-content:center;padding:20px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
 #ftnn-status .fs-modal-toggle:checked ~ .fs-ovl{display:flex;}
 #ftnn-status .fs-modal{background:#fff;border-radius:16px;max-width:640px;width:100%;max-height:86vh;overflow-y:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.35);}
@@ -66,7 +73,7 @@
 #ftnn-status .fs-bar-row{display:grid;grid-template-columns:52px 1fr 42px;gap:10px;align-items:center;margin-bottom:7px;}
 #ftnn-status .fs-bar-lab{font-size:11px;font-weight:700;color:var(--gray);text-align:right;font-variant-numeric:tabular-nums;}
 #ftnn-status .fs-bar-track{height:14px;background:#E1EEF6;border-radius:7px;overflow:hidden;}
-#ftnn-status .fs-bar-fill{height:100%;border-radius:7px;background:linear-gradient(90deg,var(--blue),var(--navy));min-width:3px;}
+#ftnn-status .fs-bar-fill{display:block;height:100%;border-radius:7px;background:linear-gradient(90deg,var(--blue),var(--navy));min-width:3px;}
 #ftnn-status .fs-bar-val{font-size:11px;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;}
 #ftnn-status .fs-bar-note{font-size:11.5px;color:var(--gray);margin-top:10px;}
 #ftnn-status .fs-tl2{list-style:none;padding:0;margin:0;}
@@ -154,7 +161,7 @@
       <div class="fs-bstat"><div class="v"><span id="fs-bud-elapsed">117</span><small> d</small></div><div class="l">Elapsed</div></div>
     </div>
     <p class="fs-bnote" id="fs-bud-note">Prepaid block: <strong>67 h · $5,000</strong> (Invoice 03043701, paid Feb 25, 2026, ≈ $74.63/h). Less <strong>21 h</strong> overage rolled in at approval = <strong>46 h net</strong> to work with. <strong>35.8 h</strong> used, ~<strong>10 h (~$760)</strong> left · <strong>117 days</strong> elapsed since the block began. Snapshot June 22, 2026 — updates live once the Netlify function is connected.</p>
-    <label for="fs-bud-modal" class="fs-detail-btn"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>View detail &amp; history</label>
+    <label for="fs-bud-modal" class="fs-detail-btn"><span class="pulse"></span><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Review hours &amp; budget history<svg class="arr" width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></label>
   </div>
 </div>
 
@@ -337,6 +344,7 @@
         <div class="fs-bar-row"><span class="fs-bar-lab">Jun 8</span><span class="fs-bar-track"><span class="fs-bar-fill" style="width:14%"></span></span><span class="fs-bar-val">1.5h</span></div>
         <div class="fs-bar-row"><span class="fs-bar-lab">Jun 22</span><span class="fs-bar-track"><span class="fs-bar-fill" style="width:30%"></span></span><span class="fs-bar-val">3.1h</span></div>
       </div>
+      <div class="fs-bar-anno"><strong>Note:</strong> the tallest week — early June — was the work to process and produce the first three podcast episodes.</div>
       <div class="fs-bar-note" id="fs-bud-weeks-note">Total tracked to date on the current block — live from Clockify “FTNN 2”.</div>
 
       <h4 class="mt">Budget &amp; approval history</h4>
