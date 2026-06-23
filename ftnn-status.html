@@ -109,6 +109,10 @@
 #ftnn-status .fs-next{display:inline-block;margin-top:7px;font-size:11.5px;color:var(--gray);font-weight:600;}
 #ftnn-status .fs-next b{color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:10px;margin-right:5px;}
 #ftnn-status .fs-todo{background:rgba(244,160,48,.10);border:1px dashed var(--amber);border-radius:8px;padding:10px 14px;font-size:12.5px;color:#946007;}
+#ftnn-status .fs-sub{list-style:none;margin:9px 0 0;padding:0;}
+#ftnn-status .fs-sub li{position:relative;padding:4px 0 4px 18px;font-size:12px;color:#4a6a7a;line-height:1.5;}
+#ftnn-status .fs-sub li::before{content:'';position:absolute;left:0;top:11px;width:7px;height:2px;background:var(--red);}
+#ftnn-status .fs-sub li strong{color:var(--navy);font-weight:700;}
 
 #ftnn-status .fs-foot{text-align:center;font-size:11.5px;color:var(--gray);margin-top:8px;}
 #ftnn-status .fs-foot b{color:var(--navy);}
@@ -125,7 +129,7 @@
 <div class="fs-head">
   <div class="fs-eyebrow">Fetal Therapy Nurse Network</div>
   <h1>Status &amp; Open Items</h1>
-  <div class="fs-updated">Working dashboard &nbsp;·&nbsp; Last updated <strong class="fs-date">June 22, 2026</strong> &nbsp;·&nbsp; maintained by Gary Ricke</div>
+  <div class="fs-updated">Working dashboard &nbsp;·&nbsp; Last updated <strong class="fs-date">June 23, 2026</strong> &nbsp;·&nbsp; maintained by Gary Ricke</div>
   <div class="fs-legend">
     <span class="fs-leg"><span class="dot" style="background:#2fcf57;"></span>Done</span>
     <span class="fs-leg"><span class="dot" style="background:#33b4e0;"></span>In progress</span>
@@ -138,9 +142,9 @@
 <div class="fs-week">
   <h3>This week's focus</h3>
   <ul>
-    <li>Ship <strong>Episode 4</strong> — send to Kris for review, then publish to Squarespace.</li>
-    <li><strong>Conference:</strong> link the 2026 Sponsorship/Exhibitor Prospectus on the conference site, and create a simpler conference logo for merch.</li>
-    <li>Stand up this status page and settle into a weekly update rhythm.</li>
+    <li><strong>Episode 4:</strong> make Kris's review edits — audio trims + page-text corrections — then re-publish.</li>
+    <li><strong>Conference:</strong> link the 2026 Sponsorship/Exhibitor Prospectus and create a simpler logo for merch (plus Kris's one consolidated page edit, incoming).</li>
+    <li>Touch base with Kris on remaining priorities (she offered a call this week).</li>
   </ul>
 </div>
 
@@ -174,11 +178,20 @@
   </div>
 
   <div class="fs-item">
-    <div><span class="pill is-active"><span class="pd"></span>Ready to ship</span></div>
+    <div><span class="pill is-next"><span class="pd"></span>Revisions</span></div>
     <div class="fs-item-main">
-      <h4>Ep 4 — “Before Birth: A Conversation with the Father of Fetal Surgery”</h4>
-      <p>Dr. Michael Harrison. Page built, audio dropout (~12:00) cleaned and the corrected file published, 3000² cover and full show notes done. Review email to Kris drafted.</p>
-      <span class="fs-next"><b>Next</b> Send review email → incorporate Kris's feedback → publish the page block to Squarespace.</span>
+      <h4>Ep 4 — “Before Birth” · revisions from Kris (reviewed 6/22)</h4>
+      <p>Kris reviewed the published episode + page and asked for a careful edit pass before it's final — extra care given Dr. Harrison's stature and the ethics sensitivity. Changes for Gary:</p>
+      <ul class="fs-sub">
+        <li><strong>Audio ~11:12</strong> — at the IFMSS spot, end cleanly after “…International Fetal Medicine Surgical Society”; cut the trailing “or I…”.</li>
+        <li><strong>Audio ~29:26 (Ch 17)</strong> — cut Kris's repeated question (he hadn't heard it the first time).</li>
+        <li><strong>Audio ~31:52</strong> — cut “…most proud of being a father to 4 boys…” and resume at “And so I think in this field that's notorious for consuming the lives…”.</li>
+        <li><strong>Audio ~32:40</strong> — clean up the “you have 4 boys / my research fooled me” passage; keep just “how many grandchildren do you have, Dr. Harrison?”.</li>
+        <li><strong>Page text</strong> — correct “4 boys” → <strong>“4 children”</strong> everywhere (he has 1 girl + 3 boys; AI mis-transcribed).</li>
+        <li><strong>Header fix</strong> — “The womb was sacrosanct” → <strong>“The fetus was sacrosanct.”</strong></li>
+        <li><strong>Header fix</strong> — replace “…it's life-ruining” → <strong>“…but can significantly impact quality of life.”</strong></li>
+        <li><strong>Then</strong> re-publish the edited audio and re-map the transcript + chapter timestamps.</li>
+      </ul>
     </div>
   </div>
 
@@ -282,6 +295,15 @@
       <h4>Simpler conference logo graphic</h4>
       <p>A simplified, print-friendly version of the FTNN Conference logo for T-shirts, water bottles, and other merch.</p>
       <span class="fs-next"><b>Next</b> Produce a flat / single-color logo variant and share for approval.</span>
+    </div>
+  </div>
+
+  <div class="fs-item">
+    <div><span class="pill is-blocked"><span class="pd"></span>Waiting on Kris</span></div>
+    <div class="fs-item-main">
+      <h4>Conference page edits</h4>
+      <p>Kris (6/22) flagged edits to the conference page — she's consolidating them so it's a single, one-time change.</p>
+      <span class="fs-next"><b>Next</b> Hold for Kris's consolidated list, then make the edits in one pass.</span>
     </div>
   </div>
 </div>
