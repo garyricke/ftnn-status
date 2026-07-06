@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FTNN 2026 — Simplified Conference Logo Concepts for Swag</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   FTNN 2026 SWAG LOGO CONCEPTS — Board review page
+   All styles scoped to #ftnn-swag. Every mark is inline SVG
+   (true vector, single-color capable, print/embroidery ready).
+   ============================================================ */
+body{margin:0;background:#E7EEF3;}
+#ftnn-swag *{box-sizing:border-box;margin:0;padding:0;}
+#ftnn-swag{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  color:#1A3F55;line-height:1.6;max-width:1120px;margin:0 auto;padding:0 20px 90px;
+  --c-navy:#0F3D57;--c-blue:#1282AD;--c-light:#71B4CE;--c-red:#D71D5A;
+  --c-amber:#F4A030;--c-green:#28A745;--c-gray:#949494;--c-bg:#F2F8FC;
+  --gold:#C9A84C;--steel:#B9C4CC;--heather:#DCE6EC;
+}
+#ftnn-swag p{margin:0;}
+#ftnn-swag h1,#ftnn-swag h2,#ftnn-swag h3,#ftnn-swag h4{
+  font-family:inherit;text-transform:none;font-style:normal;font-weight:800;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;letter-spacing:-.3px;}
+
+/* ---- mark color system: variants set --ink / --accent, symbols read them ---- */
+#ftnn-swag .mk .p-ink{fill:var(--ink);}
+#ftnn-swag .mk .p-accent{fill:var(--accent);}
+#ftnn-swag .mk .s-ink{fill:none;stroke:var(--ink);stroke-linecap:round;stroke-linejoin:round;}
+#ftnn-swag .mk .s-accent{fill:none;stroke:var(--accent);stroke-linecap:round;stroke-linejoin:round;}
+#ftnn-swag .v-color{--ink:var(--c-navy);--accent:var(--c-blue);}
+#ftnn-swag .v-mono {--ink:var(--c-navy);--accent:var(--c-navy);}
+#ftnn-swag .v-rev  {--ink:#fff;--accent:#fff;}
+/* global page toggle flips every "auto" mark (heroes + mockup positives) */
+#ftnn-swag[data-mode="mono"] .mk.v-auto{--accent:var(--ink);}
+
+/* ============================== TOP BAR ============================== */
+#ftnn-swag .sw-bar{position:sticky;top:0;z-index:40;background:rgba(15,61,87,.96);
+  backdrop-filter:blur(8px);border-radius:0 0 14px 14px;padding:12px 20px;margin:0 -20px 26px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+#ftnn-swag .sw-bar-id{display:flex;align-items:center;gap:11px;}
+#ftnn-swag .sw-bar-id svg{width:30px;height:30px;}
+#ftnn-swag .sw-bar-id b{color:#fff;font-size:13.5px;font-weight:800;letter-spacing:-.2px;line-height:1.2;}
+#ftnn-swag .sw-bar-id span{display:block;color:var(--c-light);font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:1.3px;}
+#ftnn-swag .sw-toggle{display:flex;align-items:center;gap:9px;}
+#ftnn-swag .sw-toggle-lbl{color:#9Fc4d6;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;}
+#ftnn-swag .sw-seg{display:flex;background:rgba(255,255,255,.09);border:1px solid rgba(113,180,206,.34);border-radius:30px;padding:3px;}
+#ftnn-swag .sw-seg button{font-family:inherit;border:none;background:none;cursor:pointer;color:#C5DFED;
+  font-size:12px;font-weight:700;padding:6px 15px;border-radius:30px;transition:all .16s;}
+#ftnn-swag .sw-seg button.on{background:#fff;color:var(--c-navy);}
+
+/* ============================== HERO ============================== */
+#ftnn-swag .sw-hero{background:var(--c-navy);border-radius:16px;padding:40px 42px 36px;position:relative;overflow:hidden;margin-bottom:22px;}
+#ftnn-swag .sw-hero::after{content:'';position:absolute;top:-90px;right:-70px;width:340px;height:340px;border-radius:50%;background:var(--c-blue);opacity:.15;}
+#ftnn-swag .sw-hero::before{content:'';position:absolute;bottom:-120px;left:-70px;width:260px;height:260px;border-radius:50%;background:var(--c-light);opacity:.09;}
+#ftnn-swag .sw-eyebrow{color:var(--c-light);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.8px;margin-bottom:13px;position:relative;z-index:1;}
+#ftnn-swag .sw-hero h1{color:#fff;font-size:30px;line-height:1.18;max-width:730px;position:relative;z-index:1;margin-bottom:14px;}
+#ftnn-swag .sw-hero h1 .pk{color:var(--c-red);}
+#ftnn-swag .sw-hero-p{color:#C5DFED;font-size:14.5px;line-height:1.7;max-width:660px;position:relative;z-index:1;}
+#ftnn-swag .sw-facts{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px;position:relative;z-index:1;}
+#ftnn-swag .sw-fact{background:rgba(255,255,255,.08);border:1px solid rgba(113,180,206,.3);border-radius:30px;padding:7px 15px;display:flex;align-items:center;gap:8px;}
+#ftnn-swag .sw-fact svg{width:14px;height:14px;color:var(--c-light);flex-shrink:0;}
+#ftnn-swag .sw-fact span{color:#fff;font-size:12px;font-weight:600;}
+
+/* ---- brief / how-to-read banner ---- */
+#ftnn-swag .sw-brief{display:grid;grid-template-columns:1.35fr 1fr;gap:14px;margin-bottom:34px;}
+@media(max-width:720px){#ftnn-swag .sw-brief{grid-template-columns:1fr;}}
+#ftnn-swag .sw-card{background:#fff;border-radius:13px;padding:22px 24px;box-shadow:0 1px 3px rgba(15,61,87,.07);border:1px solid #E4EEF4;}
+#ftnn-swag .sw-card h3{font-size:14px;color:var(--c-navy);margin-bottom:9px;display:flex;align-items:center;gap:8px;}
+#ftnn-swag .sw-card h3 svg{width:17px;height:17px;color:var(--c-blue);}
+#ftnn-swag .sw-card p{font-size:13px;color:#33586c;line-height:1.65;}
+#ftnn-swag .sw-card p+p{margin-top:9px;}
+#ftnn-swag .sw-legend{display:flex;flex-direction:column;gap:12px;justify-content:center;}
+#ftnn-swag .sw-leg{display:flex;align-items:center;gap:12px;}
+#ftnn-swag .sw-leg-sw{width:44px;height:44px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border:1px solid #E4EEF4;}
+#ftnn-swag .sw-leg-sw.rev{background:var(--c-navy);border-color:var(--c-navy);}
+#ftnn-swag .sw-leg-sw svg{width:30px;height:30px;}
+#ftnn-swag .sw-leg-t b{font-size:12.5px;color:var(--c-navy);font-weight:800;display:block;}
+#ftnn-swag .sw-leg-t span{font-size:11.5px;color:#5b7688;}
+
+/* ============================== CONCEPT BLOCK ============================== */
+#ftnn-swag .sw-concept{background:#fff;border-radius:16px;padding:30px 30px 32px;margin-bottom:26px;box-shadow:0 2px 10px rgba(15,61,87,.06);border:1px solid #E4EEF4;position:relative;overflow:hidden;}
+#ftnn-swag .sw-chead{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;}
+#ftnn-swag .sw-cnum{width:44px;height:44px;border-radius:12px;background:var(--c-navy);color:#fff;font-size:18px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+#ftnn-swag .sw-ctitle .k{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;color:var(--c-blue);margin-bottom:3px;}
+#ftnn-swag .sw-ctitle h2{font-size:22px;color:var(--c-navy);}
+#ftnn-swag .sw-ctitle p{font-size:13.5px;color:#41627a;margin-top:6px;max-width:620px;line-height:1.6;}
+
+#ftnn-swag .sw-showcase{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start;}
+@media(max-width:820px){#ftnn-swag .sw-showcase{grid-template-columns:1fr;}}
+
+/* hero mark tile */
+#ftnn-swag .sw-hero-tile{background:linear-gradient(160deg,#F6FAFC,#EAF3F8);border:1px solid #E1EDF3;border-radius:14px;padding:26px;display:flex;flex-direction:column;align-items:center;gap:20px;}
+#ftnn-swag .sw-hero-tile>svg{width:170px;height:170px;}
+#ftnn-swag .sw-variants{display:flex;gap:10px;width:100%;}
+#ftnn-swag .sw-var{flex:1;border-radius:10px;padding:12px 6px 9px;display:flex;flex-direction:column;align-items:center;gap:8px;border:1px solid #E1EDF3;background:#fff;}
+#ftnn-swag .sw-var.dark{background:var(--c-navy);border-color:var(--c-navy);}
+#ftnn-swag .sw-var svg{width:46px;height:46px;}
+#ftnn-swag .sw-var small{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#7a93a2;}
+#ftnn-swag .sw-var.dark small{color:#9FC4D6;}
+
+/* right column: lockup + swag */
+#ftnn-swag .sw-right{display:flex;flex-direction:column;gap:20px;}
+#ftnn-swag .sw-lockup{border:1px dashed #CFE0E9;border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:18px;background:var(--c-bg);}
+#ftnn-swag .sw-lockup>svg{width:64px;height:64px;flex-shrink:0;}
+#ftnn-swag .sw-lk-txt .lk1{font-size:16px;font-weight:900;color:var(--c-navy);letter-spacing:.5px;line-height:1.1;}
+#ftnn-swag .sw-lockup .lk1 .yr{color:var(--c-red);}
+#ftnn-swag .sw-lk-txt .lk2{font-size:11px;font-weight:700;color:var(--c-blue);text-transform:uppercase;letter-spacing:1.4px;margin-top:4px;}
+#ftnn-swag .sw-lk-txt .lk3{font-size:11.5px;color:#5b7688;margin-top:3px;font-style:italic;}
+
+#ftnn-swag .sw-swag-lbl{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:1.3px;color:#8299a6;margin-bottom:-6px;}
+#ftnn-swag .sw-swag{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+@media(max-width:1000px){#ftnn-swag .sw-swag{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:560px){#ftnn-swag .sw-swag{grid-template-columns:repeat(2,1fr);}}
+#ftnn-swag .mock{border:1px solid #E7EFF4;border-radius:11px;overflow:hidden;background:#fff;}
+#ftnn-swag .mock-stage{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;padding:8px;}
+#ftnn-swag .mock-stage svg{width:100%;height:100%;}
+#ftnn-swag .mock-cap{font-size:10px;font-weight:700;color:#6d8593;text-align:center;padding:6px 4px 8px;border-top:1px solid #EEF4F7;letter-spacing:.2px;}
+#ftnn-swag .mock-cap b{color:var(--c-navy);font-weight:800;}
+
+/* print-readiness note */
+#ftnn-swag .sw-note{margin-top:22px;background:#FBFDFE;border:1px solid #E4EEF4;border-left:4px solid var(--c-blue);border-radius:0 10px 10px 0;padding:14px 18px;display:flex;gap:12px;align-items:flex-start;}
+#ftnn-swag .sw-note svg{width:17px;height:17px;color:var(--c-blue);flex-shrink:0;margin-top:2px;}
+#ftnn-swag .sw-note-t{font-size:12.5px;color:#3a5a6c;line-height:1.6;}
+#ftnn-swag .sw-note-t b{color:var(--c-navy);}
+#ftnn-swag .sw-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+#ftnn-swag .sw-chip{font-size:10.5px;font-weight:700;background:#EAF3F8;color:#2c5468;border-radius:20px;padding:3px 10px;}
+#ftnn-swag .sw-chip.good{background:#E4F5EA;color:#1c7a3e;}
+#ftnn-swag .sw-chip.warn{background:#FDF0DC;color:#9a6512;}
+
+/* ============================== COMPARE ROW ============================== */
+#ftnn-swag .sw-compare{background:var(--c-navy);border-radius:16px;padding:30px 30px 26px;margin-bottom:26px;position:relative;overflow:hidden;}
+#ftnn-swag .sw-compare::after{content:'';position:absolute;top:-70px;right:-50px;width:240px;height:240px;border-radius:50%;background:var(--c-blue);opacity:.14;}
+#ftnn-swag .sw-compare h2{color:#fff;font-size:18px;margin-bottom:5px;position:relative;z-index:1;}
+#ftnn-swag .sw-compare p{color:#9FC4D6;font-size:12.5px;margin-bottom:22px;position:relative;z-index:1;}
+#ftnn-swag .sw-cmp-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;position:relative;z-index:1;}
+@media(max-width:760px){#ftnn-swag .sw-cmp-grid{grid-template-columns:repeat(5,1fr);gap:8px;}}
+#ftnn-swag .sw-cmp{background:rgba(255,255,255,.06);border:1px solid rgba(113,180,206,.28);border-radius:12px;padding:16px 8px 12px;text-align:center;}
+#ftnn-swag .sw-cmp svg{width:70px;height:70px;}
+@media(max-width:760px){#ftnn-swag .sw-cmp svg{width:100%;height:auto;}}
+#ftnn-swag .sw-cmp small{display:block;color:#C5DFED;font-size:10px;font-weight:700;margin-top:8px;letter-spacing:.3px;}
+
+/* ============================== CLOSING ============================== */
+#ftnn-swag .sw-next{background:#fff;border-radius:16px;padding:30px 32px;box-shadow:0 2px 10px rgba(15,61,87,.06);border:1px solid #E4EEF4;}
+#ftnn-swag .sw-next h2{font-size:19px;color:var(--c-navy);margin-bottom:8px;}
+#ftnn-swag .sw-next>p{font-size:13.5px;color:#41627a;max-width:720px;line-height:1.65;margin-bottom:20px;}
+#ftnn-swag .sw-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media(max-width:720px){#ftnn-swag .sw-steps{grid-template-columns:1fr;}}
+#ftnn-swag .sw-step{background:var(--c-bg);border-radius:11px;padding:18px;border-top:3px solid var(--c-blue);}
+#ftnn-swag .sw-step .n{font-size:11px;font-weight:800;color:var(--c-blue);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+#ftnn-swag .sw-step b{font-size:14px;color:var(--c-navy);display:block;margin-bottom:5px;}
+#ftnn-swag .sw-step p{font-size:12.5px;color:#4a6878;line-height:1.55;}
+#ftnn-swag .sw-foot{text-align:center;margin-top:30px;font-size:11.5px;color:#7a93a2;line-height:1.7;}
+#ftnn-swag .sw-foot b{color:var(--c-navy);}
+</style>
+</head>
+<body>
+<div id="ftnn-swag" data-mode="color">
+
+<!-- =================== SHARED SVG DEFINITIONS (marks + products) =================== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+
+<!-- MARK 1 — Circle of Care (6 figures holding hands) -->
+<symbol id="m1" viewBox="0 0 200 200">
+  <path style="fill:none;stroke:var(--accent);stroke-linecap:round;stroke-linejoin:round" stroke-width="13" d="M 100.00 40.00 Q 117.00 70.56 151.96 70.00 Q 134.00 100.00 151.96 130.00 Q 117.00 129.44 100.00 160.00 Q 83.00 129.44 48.04 130.00 Q 66.00 100.00 48.04 70.00 Q 83.00 70.56 100.00 40.00 Z"/>
+  <circle cx="100.00" cy="40.00" r="15" style="fill:var(--ink)"/>
+  <circle cx="151.96" cy="70.00" r="15" style="fill:var(--ink)"/>
+  <circle cx="151.96" cy="130.00" r="15" style="fill:var(--ink)"/>
+  <circle cx="100.00" cy="160.00" r="15" style="fill:var(--ink)"/>
+  <circle cx="48.04" cy="130.00" r="15" style="fill:var(--ink)"/>
+  <circle cx="48.04" cy="70.00" r="15" style="fill:var(--ink)"/>
+</symbol>
+
+<!-- MARK 2 — Trinity (3 figures embracing) -->
+<symbol id="m2" viewBox="0 0 200 200">
+  <path style="fill:none;stroke:var(--accent);stroke-linecap:round;stroke-linejoin:round" stroke-width="16" d="M 100.00 52.00 Q 168.00 58.00 140.30 122.00 Q 100.00 178.00 59.70 122.00 Q 32.00 58.00 100.00 52.00 Z"/>
+  <circle cx="100.00" cy="52.00" r="20" style="fill:var(--ink)"/>
+  <circle cx="143.30" cy="125.00" r="20" style="fill:var(--ink)"/>
+  <circle cx="56.70" cy="125.00" r="20" style="fill:var(--ink)"/>
+</symbol>
+
+<!-- MARK 3 — Heart of Hands (two figures forming a heart) -->
+<symbol id="m3" viewBox="0 0 200 200">
+  <path style="fill:var(--accent)" d="M100 166 C 44 122, 22 88, 40 62 C 56 40, 90 44, 100 70 C 110 44, 144 40, 160 62 C 178 88, 156 122, 100 166 Z"/>
+  <path style="fill:none;stroke:var(--ink);stroke-linecap:round" stroke-width="5" d="M100 74 L 100 150" opacity=".55"/>
+  <circle cx="55" cy="58" r="15" style="fill:var(--ink)"/>
+  <circle cx="145" cy="58" r="15" style="fill:var(--ink)"/>
+</symbol>
+
+<!-- MARK 4 — FTNN Monogram lockup -->
+<symbol id="m4" viewBox="0 0 200 200">
+  <!-- mini circle-of-hands over the wordmark -->
+  <g transform="translate(72,20) scale(0.28)">
+    <path style="fill:none;stroke:var(--accent);stroke-linecap:round;stroke-linejoin:round" stroke-width="20" d="M 100.00 40.00 Q 117.00 70.56 151.96 70.00 Q 134.00 100.00 151.96 130.00 Q 117.00 129.44 100.00 160.00 Q 83.00 129.44 48.04 130.00 Q 66.00 100.00 48.04 70.00 Q 83.00 70.56 100.00 40.00 Z"/>
+    <circle cx="100" cy="40" r="18" style="fill:var(--ink)"/><circle cx="151.96" cy="70" r="18" style="fill:var(--ink)"/><circle cx="151.96" cy="130" r="18" style="fill:var(--ink)"/><circle cx="100" cy="160" r="18" style="fill:var(--ink)"/><circle cx="48.04" cy="130" r="18" style="fill:var(--ink)"/><circle cx="48.04" cy="70" r="18" style="fill:var(--ink)"/>
+  </g>
+  <text x="100" y="128" text-anchor="middle" font-family="Inter,sans-serif" font-weight="900" font-size="62" letter-spacing="-2">
+    <tspan style="fill:var(--ink)">FT</tspan><tspan style="fill:var(--accent)">NN</tspan>
+  </text>
+  <rect x="46" y="146" width="108" height="3" rx="1.5" style="fill:var(--accent)"/>
+  <text x="100" y="170" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="15" letter-spacing="5" style="fill:var(--ink)">2026</text>
+</symbol>
+
+<!-- MARK 5 — Chicago Seal (thin ring + horizontal lockup + flag stars) -->
+<symbol id="m5" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="90" style="fill:none;stroke:var(--ink)" stroke-width="4"/>
+  <circle cx="100" cy="100" r="80" style="fill:none;stroke:var(--accent)" stroke-width="2" opacity=".5"/>
+  <!-- mini hands cluster -->
+  <g transform="translate(80,34) scale(0.20)">
+    <path style="fill:none;stroke:var(--accent);stroke-linecap:round;stroke-linejoin:round" stroke-width="22" d="M 100.00 52.00 Q 168.00 58.00 140.30 122.00 Q 100.00 178.00 59.70 122.00 Q 32.00 58.00 100.00 52.00 Z"/>
+    <circle cx="100" cy="52" r="24" style="fill:var(--ink)"/><circle cx="143.30" cy="125" r="24" style="fill:var(--ink)"/><circle cx="56.70" cy="125" r="24" style="fill:var(--ink)"/>
+  </g>
+  <text x="100" y="112" text-anchor="middle" font-family="Inter,sans-serif" font-weight="900" font-size="40" letter-spacing="-1" style="fill:var(--ink)">FTNN</text>
+  <text x="100" y="132" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="12" letter-spacing="3.5" style="fill:var(--accent)">CHICAGO 2026</text>
+  <!-- four six-point stars (Chicago flag nod) -->
+  <path style="fill:var(--accent)" transform="translate(58,150)"  d="M 0 -6.5 L 1.4 -2.4 L 5.6 -3.3 L 2.8 0 L 5.6 3.3 L 1.4 2.4 L 0 6.5 L -1.4 2.4 L -5.6 3.3 L -2.8 0 L -5.6 -3.3 L -1.4 -2.4 Z"/>
+  <path style="fill:var(--accent)" transform="translate(80,158)"  d="M 0 -6.5 L 1.4 -2.4 L 5.6 -3.3 L 2.8 0 L 5.6 3.3 L 1.4 2.4 L 0 6.5 L -1.4 2.4 L -5.6 3.3 L -2.8 0 L -5.6 -3.3 L -1.4 -2.4 Z"/>
+  <path style="fill:var(--accent)" transform="translate(120,158)" d="M 0 -6.5 L 1.4 -2.4 L 5.6 -3.3 L 2.8 0 L 5.6 3.3 L 1.4 2.4 L 0 6.5 L -1.4 2.4 L -5.6 3.3 L -2.8 0 L -5.6 -3.3 L -1.4 -2.4 Z"/>
+  <path style="fill:var(--accent)" transform="translate(142,150)" d="M 0 -6.5 L 1.4 -2.4 L 5.6 -3.3 L 2.8 0 L 5.6 3.3 L 1.4 2.4 L 0 6.5 L -1.4 2.4 L -5.6 3.3 L -2.8 0 L -5.6 -3.3 L -1.4 -2.4 Z"/>
+</symbol>
+
+<!-- ===== PRODUCT SILHOUETTES (tint via --gar / --gar2) ===== -->
+<symbol id="p-tee" viewBox="0 0 120 120">
+  <path fill="var(--gar)" stroke="var(--gar2)" stroke-width="1.5" stroke-linejoin="round"
+    d="M44 20 L30 26 L14 40 L22 52 L32 46 L32 104 L88 104 L88 46 L98 52 L106 40 L90 26 L76 20 C72 30 48 30 44 20 Z"/>
+  <path fill="none" stroke="var(--gar2)" stroke-width="1.2" opacity=".7" d="M44 20 C48 30 72 30 76 20"/>
+</symbol>
+<symbol id="p-cap" viewBox="0 0 120 120">
+  <path fill="var(--gar)" stroke="var(--gar2)" stroke-width="1.5" d="M18 74 C18 44 40 30 60 30 C80 30 102 44 102 74 L92 74 C92 52 78 42 60 42 C42 42 28 52 28 74 Z"/>
+  <path fill="var(--gar)" stroke="var(--gar2)" stroke-width="1.5" d="M26 74 C26 50 42 40 60 40 C78 40 94 50 94 74 C82 80 38 80 26 74 Z"/>
+  <path fill="var(--gar2)" opacity=".85" d="M92 74 C104 73 112 76 116 82 C110 84 100 82 92 80 Z"/>
+  <circle cx="60" cy="40" r="2.4" fill="var(--gar2)"/>
+</symbol>
+<symbol id="p-pin" viewBox="0 0 120 120">
+  <circle cx="60" cy="60" r="46" fill="var(--gold)"/>
+  <circle cx="60" cy="60" r="46" fill="none" stroke="#a8863a" stroke-width="2"/>
+  <circle cx="60" cy="60" r="40" fill="var(--gar)"/>
+  <circle cx="60" cy="60" r="40" fill="none" stroke="#e6d191" stroke-width="1.4" opacity=".8"/>
+</symbol>
+<symbol id="p-tote" viewBox="0 0 120 120">
+  <path fill="none" stroke="var(--gar2)" stroke-width="3" d="M42 34 C42 18 78 18 78 34"/>
+  <rect x="22" y="34" width="76" height="70" rx="4" fill="var(--gar)" stroke="var(--gar2)" stroke-width="1.5"/>
+</symbol>
+<symbol id="p-tumbler" viewBox="0 0 120 120">
+  <path fill="var(--gar)" stroke="var(--gar2)" stroke-width="1.5" d="M40 22 L80 22 L76 100 C76 106 44 106 44 100 Z"/>
+  <path fill="#fff" opacity=".18" d="M46 24 L52 24 L49 100 L45 100 Z"/>
+  <ellipse cx="60" cy="22" rx="20" ry="5" fill="var(--gar2)" opacity=".6"/>
+</symbol>
+<symbol id="p-sticker" viewBox="0 0 120 120">
+  <rect x="16" y="16" width="88" height="88" rx="16" fill="#fff" stroke="#E1EAEF" stroke-width="1.5"/>
+</symbol>
+
+</defs>
+</svg>
+
+<!-- =================== TOP BAR =================== -->
+<div class="sw-bar">
+  <div class="sw-bar-id">
+    <svg class="mk v-rev" viewBox="0 0 200 200"><use href="#m1"/></svg>
+    <div><span>FTNN 2026 Conference</span><b>Swag Logo Concepts</b></div>
+  </div>
+  <div class="sw-toggle">
+    <span class="sw-toggle-lbl">Preview marks in</span>
+    <div class="sw-seg" id="sw-seg">
+      <button data-mode="color" class="on">Full color</button>
+      <button data-mode="mono">One color</button>
+    </div>
+  </div>
+</div>
+
+<!-- =================== HERO =================== -->
+<div class="sw-hero">
+  <div class="sw-eyebrow">Board Review · Prepared July 6, 2026 · Decision for July 8 meeting</div>
+  <h1>Simplified conference logo options for conference swag<span class="pk">.</span></h1>
+  <p class="sw-hero-p">Five directions for a swag-ready mark, each built from scratch as clean vector art. The full FTNN badge — a text ring wrapped around six interlocking figures — is beautiful on screen but loses its detail on an embroidered cap, an engraved tumbler, or a 1-inch pin. These concepts keep the heart of the mark while surviving the reduction. Toggle <b>One color</b> up top to judge how each reads with a single thread or engraving color.</p>
+  <div class="sw-facts">
+    <div class="sw-fact"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>October 13–14, 2026</span></div>
+    <div class="sw-fact"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Hyatt Regency McCormick Place · Chicago</span></div>
+    <div class="sw-fact"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg><span>Theme: One Heart, Many Hands</span></div>
+  </div>
+</div>
+
+<!-- =================== BRIEF + LEGEND =================== -->
+<div class="sw-brief">
+  <div class="sw-card">
+    <h3><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Why simplify the mark for swag</h3>
+    <p>The current badge carries a lot of fine detail — an outer text ring, the “EST 2015” markers, and six two-tone figures with interlocking arms. At full size it’s gorgeous. Shrunk to a cap front (~2.5″), a pin (1″), or laser-etched on steel, the thin lines fill in, the two blues muddy together, and the wordmark ring becomes unreadable.</p>
+    <p>Every concept below is drawn to hold up at small sizes and in a single color, while still reading as <b>FTNN</b> and the 2026 Chicago conference.</p>
+  </div>
+  <div class="sw-card sw-legend">
+    <div class="sw-leg"><div class="sw-leg-sw"><svg class="mk v-color" viewBox="0 0 200 200"><use href="#m1"/></svg></div><div class="sw-leg-t"><b>Full color</b><span>Brand navy + blue — stickers, totes, full-color print</span></div></div>
+    <div class="sw-leg"><div class="sw-leg-sw"><svg class="mk v-mono" viewBox="0 0 200 200"><use href="#m1"/></svg></div><div class="sw-leg-t"><b>One color</b><span>Single navy — embroidery, engraving, 1-color screen</span></div></div>
+    <div class="sw-leg"><div class="sw-leg-sw rev"><svg class="mk v-rev" viewBox="0 0 200 200"><use href="#m1"/></svg></div><div class="sw-leg-t"><b>Reversed</b><span>White knockout — dark shirts, caps, tumblers</span></div></div>
+  </div>
+</div>
+
+<!-- =================== CONCEPT 1 =================== -->
+<div class="sw-concept">
+  <div class="sw-chead">
+    <div class="sw-cnum">1</div>
+    <div class="sw-ctitle"><div class="k">Refined from the badge · A</div><h2>The Circle</h2>
+      <p>The heart of the current logo — six figures holding hands in a ring — rebuilt with bold, even weights and generous spacing so every figure stays distinct when stitched or etched.</p></div>
+  </div>
+  <div class="sw-showcase">
+    <div class="sw-hero-tile">
+      <svg class="mk v-auto v-color" viewBox="0 0 200 200"><use href="#m1"/></svg>
+      <div class="sw-variants">
+        <div class="sw-var"><svg class="mk v-color" viewBox="0 0 200 200"><use href="#m1"/></svg><small>Color</small></div>
+        <div class="sw-var"><svg class="mk v-mono" viewBox="0 0 200 200"><use href="#m1"/></svg><small>1-color</small></div>
+        <div class="sw-var dark"><svg class="mk v-rev" viewBox="0 0 200 200"><use href="#m1"/></svg><small>Reversed</small></div>
+      </div>
+    </div>
+    <div class="sw-right">
+      <div class="sw-lockup">
+        <svg class="mk v-color" viewBox="0 0 200 200"><use href="#m1"/></svg>
+        <div class="sw-lk-txt"><div class="lk1">FTNN <span class="yr">2026</span></div><div class="lk2">Chicago · Oct 13–14</div><div class="lk3">One Heart, Many Hands</div></div>
+      </div>
+      <div class="sw-swag-lbl">On swag</div>
+      <div class="sw-swag">
+        <div class="mock"><div class="mock-stage" style="--gar:var(--c-navy);--gar2:#0a2c40"><svg viewBox="0 0 120 120"><use href="#p-tee"/><svg class="mk v-rev" x="41" y="44" width="38" height="38" viewBox="0 0 200 200"><use href="#m1"/></svg></svg></div><div class="mock-cap"><b>Tee</b> · navy</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--c-navy);--gar2:#0a2c40"><svg viewBox="0 0 120 120"><use href="#p-cap"/><svg class="mk v-rev" x="46" y="48" width="28" height="28" viewBox="0 0 200 200"><use href="#m1"/></svg></svg></div><div class="mock-cap"><b>Cap</b> · embroidered</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--c-navy);--gar2:#0a2c40"><svg viewBox="0 0 120 120"><use href="#p-pin"/><svg class="mk v-rev" x="34" y="34" width="52" height="52" viewBox="0 0 200 200"><use href="#m1"/></svg></svg></div><div class="mock-cap"><b>Pin</b> · 1″ enamel</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--heather);--gar2:#c3d2db"><svg viewBox="0 0 120 120"><use href="#p-tote"/><svg class="mk v-color" x="42" y="50" width="36" height="36" viewBox="0 0 200 200"><use href="#m1"/></svg></svg></div><div class="mock-cap"><b>Tote</b> · canvas</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--steel);--gar2:#8fa0ab"><svg viewBox="0 0 120 120"><use href="#p-tumbler"/><svg class="mk v-mono" x="44" y="46" width="32" height="32" viewBox="0 0 200 200"><use href="#m1"/></svg></svg></div><div class="mock-cap"><b>Tumbler</b> · etched</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:#fff;--gar2:#e1eaef"><svg viewBox="0 0 120 120"><use href="#p-sticker"/><svg class="mk v-color" x="34" y="34" width="52" height="52" viewBox="0 0 200 200"><use href="#m1"/></svg></svg></div><div class="mock-cap"><b>Sticker</b> · die-cut</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="sw-note">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+    <div class="sw-note-t"><b>Print readiness — strong.</b> Discrete round shapes embroider and engrave cleanly; no thin serifs or overlaps to fill in.
+      <div class="sw-chips"><span class="sw-chip good">Embroiders well</span><span class="sw-chip good">1-color ready</span><span class="sw-chip good">Reverses cleanly</span><span class="sw-chip">Min size ≈ 0.75″</span><span class="sw-chip">2 colors max</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== CONCEPT 2 =================== -->
+<div class="sw-concept">
+  <div class="sw-chead">
+    <div class="sw-cnum">2</div>
+    <div class="sw-ctitle"><div class="k">Refined from the badge · B</div><h2>The Trinity</h2>
+      <p>The same circle-of-people idea reduced to its most legible form — three figures embracing around a rounded triangle. The biggest, boldest reduction; unmistakable even at pin size.</p></div>
+  </div>
+  <div class="sw-showcase">
+    <div class="sw-hero-tile">
+      <svg class="mk v-auto v-color" viewBox="0 0 200 200"><use href="#m2"/></svg>
+      <div class="sw-variants">
+        <div class="sw-var"><svg class="mk v-color" viewBox="0 0 200 200"><use href="#m2"/></svg><small>Color</small></div>
+        <div class="sw-var"><svg class="mk v-mono" viewBox="0 0 200 200"><use href="#m2"/></svg><small>1-color</small></div>
+        <div class="sw-var dark"><svg class="mk v-rev" viewBox="0 0 200 200"><use href="#m2"/></svg><small>Reversed</small></div>
+      </div>
+    </div>
+    <div class="sw-right">
+      <div class="sw-lockup">
+        <svg class="mk v-color" viewBox="0 0 200 200"><use href="#m2"/></svg>
+        <div class="sw-lk-txt"><div class="lk1">FTNN <span class="yr">2026</span></div><div class="lk2">Chicago · Oct 13–14</div><div class="lk3">One Heart, Many Hands</div></div>
+      </div>
+      <div class="sw-swag-lbl">On swag</div>
+      <div class="sw-swag">
+        <div class="mock"><div class="mock-stage" style="--gar:var(--c-navy);--gar2:#0a2c40"><svg viewBox="0 0 120 120"><use href="#p-tee"/><svg class="mk v-rev" x="41" y="44" width="38" height="38" viewBox="0 0 200 200"><use href="#m2"/></svg></svg></div><div class="mock-cap"><b>Tee</b> · navy</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--c-red);--gar2:#a3103f"><svg viewBox="0 0 120 120"><use href="#p-cap"/><svg class="mk v-rev" x="46" y="48" width="28" height="28" viewBox="0 0 200 200"><use href="#m2"/></svg></svg></div><div class="mock-cap"><b>Cap</b> · embroidered</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--c-navy);--gar2:#0a2c40"><svg viewBox="0 0 120 120"><use href="#p-pin"/><svg class="mk v-rev" x="34" y="34" width="52" height="52" viewBox="0 0 200 200"><use href="#m2"/></svg></svg></div><div class="mock-cap"><b>Pin</b> · 1″ enamel</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--heather);--gar2:#c3d2db"><svg viewBox="0 0 120 120"><use href="#p-tote"/><svg class="mk v-color" x="42" y="50" width="36" height="36" viewBox="0 0 200 200"><use href="#m2"/></svg></svg></div><div class="mock-cap"><b>Tote</b> · canvas</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--steel);--gar2:#8fa0ab"><svg viewBox="0 0 120 120"><use href="#p-tumbler"/><svg class="mk v-mono" x="44" y="46" width="32" height="32" viewBox="0 0 200 200"><use href="#m2"/></svg></svg></div><div class="mock-cap"><b>Tumbler</b> · etched</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:#fff;--gar2:#e1eaef"><svg viewBox="0 0 120 120"><use href="#p-sticker"/><svg class="mk v-color" x="34" y="34" width="52" height="52" viewBox="0 0 200 200"><use href="#m2"/></svg></svg></div><div class="mock-cap"><b>Sticker</b> · die-cut</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="sw-note">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+    <div class="sw-note-t"><b>Print readiness — excellent.</b> The single strongest performer at tiny sizes; reads instantly on a pin or a hat.
+      <div class="sw-chips"><span class="sw-chip good">Best at small size</span><span class="sw-chip good">1-color ready</span><span class="sw-chip good">Reverses cleanly</span><span class="sw-chip">Min size ≈ 0.5″</span><span class="sw-chip">2 colors max</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== CONCEPT 3 =================== -->
+<div class="sw-concept">
+  <div class="sw-chead">
+    <div class="sw-cnum">3</div>
+    <div class="sw-ctitle"><div class="k">Theme-forward</div><h2>Heart of Hands</h2>
+      <p>Built directly from the 2026 theme, “One Heart, Many Hands.” Two figures lean together to form a single heart — warm, human, and specific to this conference year rather than the evergreen organization mark.</p></div>
+  </div>
+  <div class="sw-showcase">
+    <div class="sw-hero-tile">
+      <svg class="mk v-auto v-color" viewBox="0 0 200 200"><use href="#m3"/></svg>
+      <div class="sw-variants">
+        <div class="sw-var"><svg class="mk v-color" viewBox="0 0 200 200"><use href="#m3"/></svg><small>Color</small></div>
+        <div class="sw-var"><svg class="mk v-mono" viewBox="0 0 200 200"><use href="#m3"/></svg><small>1-color</small></div>
+        <div class="sw-var dark"><svg class="mk v-rev" viewBox="0 0 200 200"><use href="#m3"/></svg><small>Reversed</small></div>
+      </div>
+    </div>
+    <div class="sw-right">
+      <div class="sw-lockup">
+        <svg class="mk v-color" viewBox="0 0 200 200"><use href="#m3"/></svg>
+        <div class="sw-lk-txt"><div class="lk1">FTNN <span class="yr">2026</span></div><div class="lk2">Chicago · Oct 13–14</div><div class="lk3">One Heart, Many Hands</div></div>
+      </div>
+      <div class="sw-swag-lbl">On swag</div>
+      <div class="sw-swag">
+        <div class="mock"><div class="mock-stage" style="--gar:var(--c-navy);--gar2:#0a2c40"><svg viewBox="0 0 120 120"><use href="#p-tee"/><svg class="mk v-rev" x="41" y="44" width="38" height="38" viewBox="0 0 200 200"><use href="#m3"/></svg></svg></div><div class="mock-cap"><b>Tee</b> · navy</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--heather);--gar2:#c3d2db"><svg viewBox="0 0 120 120"><use href="#p-cap"/><svg class="mk v-color" x="46" y="48" width="28" height="28" viewBox="0 0 200 200"><use href="#m3"/></svg></svg></div><div class="mock-cap"><b>Cap</b> · embroidered</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:#fff;--gar2:#0a2c40"><svg viewBox="0 0 120 120"><use href="#p-pin"/><svg class="mk v-color" x="34" y="34" width="52" height="52" viewBox="0 0 200 200"><use href="#m3"/></svg></svg></div><div class="mock-cap"><b>Pin</b> · 1″ enamel</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--heather);--gar2:#c3d2db"><svg viewBox="0 0 120 120"><use href="#p-tote"/><svg class="mk v-color" x="42" y="50" width="36" height="36" viewBox="0 0 200 200"><use href="#m3"/></svg></svg></div><div class="mock-cap"><b>Tote</b> · canvas</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--steel);--gar2:#8fa0ab"><svg viewBox="0 0 120 120"><use href="#p-tumbler"/><svg class="mk v-mono" x="44" y="46" width="32" height="32" viewBox="0 0 200 200"><use href="#m3"/></svg></svg></div><div class="mock-cap"><b>Tumbler</b> · etched</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:#fff;--gar2:#e1eaef"><svg viewBox="0 0 120 120"><use href="#p-sticker"/><svg class="mk v-color" x="34" y="34" width="52" height="52" viewBox="0 0 200 200"><use href="#m3"/></svg></svg></div><div class="mock-cap"><b>Sticker</b> · die-cut</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="sw-note">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+    <div class="sw-note-t"><b>Print readiness — good, with a note.</b> Solid heart reverses and engraves well; the thin center seam should be dropped or thickened below ~1″. This mark is conference-specific — great for 2026 swag, but not a permanent org logo.
+      <div class="sw-chips"><span class="sw-chip good">On-theme</span><span class="sw-chip good">Reverses cleanly</span><span class="sw-chip warn">Thicken seam if small</span><span class="sw-chip">Min size ≈ 0.75″</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== CONCEPT 4 =================== -->
+<div class="sw-concept">
+  <div class="sw-chead">
+    <div class="sw-cnum">4</div>
+    <div class="sw-ctitle"><div class="k">Wordmark</div><h2>FTNN Monogram</h2>
+      <p>When the audience already knows the organization, the letters do the work. A bold <b>FTNN</b> lockup with the circle-of-hands as a small crest and the year beneath — the most versatile option for a left-chest, a hat, or a sleeve hit.</p></div>
+  </div>
+  <div class="sw-showcase">
+    <div class="sw-hero-tile">
+      <svg class="mk v-auto v-color" viewBox="0 0 200 200"><use href="#m4"/></svg>
+      <div class="sw-variants">
+        <div class="sw-var"><svg class="mk v-color" viewBox="0 0 200 200"><use href="#m4"/></svg><small>Color</small></div>
+        <div class="sw-var"><svg class="mk v-mono" viewBox="0 0 200 200"><use href="#m4"/></svg><small>1-color</small></div>
+        <div class="sw-var dark"><svg class="mk v-rev" viewBox="0 0 200 200"><use href="#m4"/></svg><small>Reversed</small></div>
+      </div>
+    </div>
+    <div class="sw-right">
+      <div class="sw-lockup">
+        <svg class="mk v-color" viewBox="0 0 200 200"><use href="#m4"/></svg>
+        <div class="sw-lk-txt"><div class="lk1">Fetal Therapy Nurse Network</div><div class="lk2">Chicago · Oct 13–14, 2026</div><div class="lk3">One Heart, Many Hands</div></div>
+      </div>
+      <div class="sw-swag-lbl">On swag</div>
+      <div class="sw-swag">
+        <div class="mock"><div class="mock-stage" style="--gar:var(--c-navy);--gar2:#0a2c40"><svg viewBox="0 0 120 120"><use href="#p-tee"/><svg class="mk v-rev" x="42" y="46" width="36" height="36" viewBox="0 0 200 200"><use href="#m4"/></svg></svg></div><div class="mock-cap"><b>Tee</b> · navy</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--c-navy);--gar2:#0a2c40"><svg viewBox="0 0 120 120"><use href="#p-cap"/><svg class="mk v-rev" x="46" y="49" width="28" height="28" viewBox="0 0 200 200"><use href="#m4"/></svg></svg></div><div class="mock-cap"><b>Cap</b> · embroidered</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--c-navy);--gar2:#0a2c40"><svg viewBox="0 0 120 120"><use href="#p-pin"/><svg class="mk v-rev" x="35" y="35" width="50" height="50" viewBox="0 0 200 200"><use href="#m4"/></svg></svg></div><div class="mock-cap"><b>Pin</b> · 1″ enamel</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--heather);--gar2:#c3d2db"><svg viewBox="0 0 120 120"><use href="#p-tote"/><svg class="mk v-color" x="42" y="52" width="36" height="36" viewBox="0 0 200 200"><use href="#m4"/></svg></svg></div><div class="mock-cap"><b>Tote</b> · canvas</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--steel);--gar2:#8fa0ab"><svg viewBox="0 0 120 120"><use href="#p-tumbler"/><svg class="mk v-mono" x="44" y="48" width="32" height="32" viewBox="0 0 200 200"><use href="#m4"/></svg></svg></div><div class="mock-cap"><b>Tumbler</b> · etched</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:#fff;--gar2:#e1eaef"><svg viewBox="0 0 120 120"><use href="#p-sticker"/><svg class="mk v-color" x="35" y="35" width="50" height="50" viewBox="0 0 200 200"><use href="#m4"/></svg></svg></div><div class="mock-cap"><b>Sticker</b> · die-cut</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="sw-note">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+    <div class="sw-note-t"><b>Print readiness — excellent &amp; most versatile.</b> Type reproduces reliably at any size. For production the letters must be converted to outlines so the vendor doesn’t substitute fonts.
+      <div class="sw-chips"><span class="sw-chip good">Most versatile</span><span class="sw-chip good">1-color ready</span><span class="sw-chip good">Reverses cleanly</span><span class="sw-chip warn">Outline the type for print</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== CONCEPT 5 =================== -->
+<div class="sw-concept">
+  <div class="sw-chead">
+    <div class="sw-cnum">5</div>
+    <div class="sw-ctitle"><div class="k">Badge / seal hybrid</div><h2>The Chicago Seal</h2>
+      <p>For anyone attached to the badge format, a modern seal: one clean ring, a compact hands crest, the FTNN name, and a nod to the host city with the four stars of the Chicago flag. Keeps the “commemorative” feel without the fine text ring.</p></div>
+  </div>
+  <div class="sw-showcase">
+    <div class="sw-hero-tile">
+      <svg class="mk v-auto v-color" viewBox="0 0 200 200"><use href="#m5"/></svg>
+      <div class="sw-variants">
+        <div class="sw-var"><svg class="mk v-color" viewBox="0 0 200 200"><use href="#m5"/></svg><small>Color</small></div>
+        <div class="sw-var"><svg class="mk v-mono" viewBox="0 0 200 200"><use href="#m5"/></svg><small>1-color</small></div>
+        <div class="sw-var dark"><svg class="mk v-rev" viewBox="0 0 200 200"><use href="#m5"/></svg><small>Reversed</small></div>
+      </div>
+    </div>
+    <div class="sw-right">
+      <div class="sw-lockup">
+        <svg class="mk v-color" viewBox="0 0 200 200"><use href="#m5"/></svg>
+        <div class="sw-lk-txt"><div class="lk1">FTNN <span class="yr">2026</span></div><div class="lk2">Chicago · Oct 13–14</div><div class="lk3">One Heart, Many Hands</div></div>
+      </div>
+      <div class="sw-swag-lbl">On swag</div>
+      <div class="sw-swag">
+        <div class="mock"><div class="mock-stage" style="--gar:var(--c-navy);--gar2:#0a2c40"><svg viewBox="0 0 120 120"><use href="#p-tee"/><svg class="mk v-rev" x="41" y="44" width="38" height="38" viewBox="0 0 200 200"><use href="#m5"/></svg></svg></div><div class="mock-cap"><b>Tee</b> · navy</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--c-navy);--gar2:#0a2c40"><svg viewBox="0 0 120 120"><use href="#p-cap"/><svg class="mk v-rev" x="46" y="48" width="28" height="28" viewBox="0 0 200 200"><use href="#m5"/></svg></svg></div><div class="mock-cap"><b>Cap</b> · embroidered</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--c-navy);--gar2:#0a2c40"><svg viewBox="0 0 120 120"><use href="#p-pin"/><svg class="mk v-rev" x="33" y="33" width="54" height="54" viewBox="0 0 200 200"><use href="#m5"/></svg></svg></div><div class="mock-cap"><b>Pin</b> · 1.25″ enamel</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--heather);--gar2:#c3d2db"><svg viewBox="0 0 120 120"><use href="#p-tote"/><svg class="mk v-color" x="42" y="50" width="36" height="36" viewBox="0 0 200 200"><use href="#m5"/></svg></svg></div><div class="mock-cap"><b>Tote</b> · canvas</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:var(--steel);--gar2:#8fa0ab"><svg viewBox="0 0 120 120"><use href="#p-tumbler"/><svg class="mk v-mono" x="44" y="46" width="32" height="32" viewBox="0 0 200 200"><use href="#m5"/></svg></svg></div><div class="mock-cap"><b>Tumbler</b> · etched</div></div>
+        <div class="mock"><div class="mock-stage" style="--gar:#fff;--gar2:#e1eaef"><svg viewBox="0 0 120 120"><use href="#p-sticker"/><svg class="mk v-color" x="33" y="33" width="54" height="54" viewBox="0 0 200 200"><use href="#m5"/></svg></svg></div><div class="mock-cap"><b>Sticker</b> · die-cut</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="sw-note">
+    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+    <div class="sw-note-t"><b>Print readiness — good above ~1″.</b> The most detailed of the five: the small type and stars need at least a 1–1.25″ footprint (pins, stickers, left-chest). Reads beautifully on a sticker; keep it off tiny hits.
+      <div class="sw-chips"><span class="sw-chip good">Commemorative feel</span><span class="sw-chip good">Local nod</span><span class="sw-chip warn">Not for tiny sizes</span><span class="sw-chip">Min size ≈ 1.25″</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== COMPARE ROW =================== -->
+<div class="sw-compare">
+  <h2>All five, side by side — in one color</h2>
+  <p>The truest test of a swag mark: does it hold up as a single navy silhouette? This is how each looks stitched, etched, or printed in one ink.</p>
+  <div class="sw-cmp-grid">
+    <div class="sw-cmp"><svg class="mk v-rev" viewBox="0 0 200 200"><use href="#m1"/></svg><small>1 · The Circle</small></div>
+    <div class="sw-cmp"><svg class="mk v-rev" viewBox="0 0 200 200"><use href="#m2"/></svg><small>2 · The Trinity</small></div>
+    <div class="sw-cmp"><svg class="mk v-rev" viewBox="0 0 200 200"><use href="#m3"/></svg><small>3 · Heart of Hands</small></div>
+    <div class="sw-cmp"><svg class="mk v-rev" viewBox="0 0 200 200"><use href="#m4"/></svg><small>4 · Monogram</small></div>
+    <div class="sw-cmp"><svg class="mk v-rev" viewBox="0 0 200 200"><use href="#m5"/></svg><small>5 · Chicago Seal</small></div>
+  </div>
+</div>
+
+<!-- =================== NEXT STEPS =================== -->
+<div class="sw-next">
+  <h2>For the Board — how to use this</h2>
+  <p>Each concept is real vector art, not a sketch. Once the Board narrows to one or two directions, I’ll deliver production files (SVG, EPS, and PNG in color / one-color / reversed) sized for the vendor, plus the conference lockups. A quick recommendation to frame the discussion:</p>
+  <div class="sw-steps">
+    <div class="sw-step"><div class="n">Safest bet</div><b>Concept 2 · The Trinity</b><p>The most reliable across every item and size — the one that will never look muddy on a hat or a pin.</p></div>
+    <div class="sw-step"><div class="n">Most flexible</div><b>Concept 4 · Monogram</b><p>Pairs with any of the icon marks and works where an emblem won’t fit — sleeves, left chest, cuffs.</p></div>
+    <div class="sw-step"><div class="n">Most memorable</div><b>Concept 3 · Heart of Hands</b><p>The strongest tie to this year’s theme — ideal if the Board wants swag that feels specific to Chicago 2026.</p></div>
+  </div>
+  <p class="sw-foot"><b>Fetal Therapy Nurse Network · 2026 Conference</b><br>Swag logo concepts prepared for Board review, July 8, 2026 · All marks © FTNN · Vector originals available on request.</p>
+</div>
+
+</div>
+
+<script>
+(function(){
+  var wrap=document.getElementById('ftnn-swag');
+  var seg=document.getElementById('sw-seg');
+  seg.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    wrap.setAttribute('data-mode', b.getAttribute('data-mode'));
+    seg.querySelectorAll('button').forEach(function(x){x.classList.toggle('on', x===b);});
+  });
+})();
+</script>
+</body>
+</html>
