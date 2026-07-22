@@ -3,10 +3,14 @@
 // so we can answer "are people using the episode pages, or just listening?"
 //
 // POST body {ep:"ep5", event:"view"|"play"|"complete"|"chapter"|"deepdive"|
-//            "scroll50"|"scroll90"|"time", seconds?:N}  -> increments a counter
-// GET  -> returns the aggregated JSON for the /status dashboard
+//            "scroll50"|"scroll90"|"time", seconds?:N}  -> records one event
+// GET  -> returns aggregated JSON for the /status dashboard
 //
-// Storage: Netlify Blobs (auto-configured for v2 functions; no external service, no keys).
+// Storage: Netlify Blobs, APPEND-ONLY. Every event is written to its own unique
+// key (no read-modify-write), so concurrent events can never clobber each other —
+// counts stay exact. The key encodes everything the aggregate needs, so GET only
+// lists keys (no per-blob value reads). If volume ever grows large, a periodic
+// compaction step can fold old events into a summary blob.
 
 import { getStore } from "@netlify/blobs";
 
@@ -14,7 +18,6 @@ const ALLOWED = new Set([
   "view", "play", "complete", "chapter", "deepdive", "scroll50", "scroll90", "time",
 ]);
 const STORE = "ftnn-podcast-engagement";
-const KEY = "agg";
 
 const cors = {
   "Access-Control-Allow-Origin": "*",
@@ -23,7 +26,6 @@ const cors = {
   "Content-Type": "application/json",
   "Cache-Control": "no-store",
 };
-
 const json = (obj, status = 200) => new Response(JSON.stringify(obj), { status, headers: cors });
 
 export default async (req) => {
@@ -37,41 +39,39 @@ export default async (req) => {
   }
 
   try {
-    if (req.method === "GET") {
-      const data = (await store.get(KEY, { type: "json" })) || { episodes: {} };
-      return json({ ...data, asOf: new Date().toISOString() });
-    }
-
     if (req.method === "POST") {
       let b = {};
       try { b = JSON.parse((await req.text()) || "{}"); } catch (_) {}
       const ep = String(b.ep || "").toLowerCase();
       const ev = String(b.event || "");
       if (!/^ep\d{1,3}$/.test(ep) || !ALLOWED.has(ev)) return json({ error: "bad params" }, 400);
-      const secs = ev === "time" ? Math.max(0, Math.min(7200, Number(b.seconds) || 0)) : 0;
+      const secs = ev === "time" ? Math.max(0, Math.min(7200, Math.round(Number(b.seconds) || 0))) : 0;
+      const uid = Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+      // key: e/<ep>/<event>/<seconds>/<uid> — everything needed is in the key
+      await store.set(`e/${ep}/${ev}/${secs}/${uid}`, "1");
+      return json({ ok: true });
+    }
 
-      // compare-and-set with jittered retry so concurrent increments don't clobber each other
-      const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-      for (let attempt = 0; attempt < 25; attempt++) {
-        const res = await store.getWithMetadata(KEY, { type: "json" });
-        const data = (res && res.data) || { episodes: {} };
-        const etag = res && res.etag;
-        if (!data.episodes[ep]) data.episodes[ep] = {};
-        const e = data.episodes[ep];
-        if (ev === "time") {
-          e.timeSum = (e.timeSum || 0) + secs;
-          e.timeCount = (e.timeCount || 0) + 1;
-        } else {
-          e[ev] = (e[ev] || 0) + 1;
+    if (req.method === "GET") {
+      const episodes = {};
+      let cursor;
+      do {
+        const page = await store.list({ prefix: "e/", cursor });
+        for (const item of page.blobs || []) {
+          const p = item.key.split("/"); // ["e", ep, event, secs, uid]
+          if (p.length < 5) continue;
+          const ep = p[1], ev = p[2], secs = Number(p[3]) || 0;
+          const e = episodes[ep] || (episodes[ep] = {});
+          if (ev === "time") {
+            e.timeSum = (e.timeSum || 0) + secs;
+            e.timeCount = (e.timeCount || 0) + 1;
+          } else {
+            e[ev] = (e[ev] || 0) + 1;
+          }
         }
-        data.updatedAt = new Date().toISOString();
-        try {
-          const w = await store.setJSON(KEY, data, etag ? { onlyIfMatch: etag } : { onlyIfNew: true });
-          if (!w || w.modified !== false) return json({ ok: true });
-        } catch (_) { /* conflict or transient — retry */ }
-        await sleep(15 + Math.floor(Math.random() * 60) * (1 + attempt * 0.15));
-      }
-      return json({ ok: true, note: "retry-exhausted" });
+        cursor = page.cursor;
+      } while (cursor);
+      return json({ episodes, asOf: new Date().toISOString() });
     }
 
     return json({ error: "method not allowed" }, 405);
