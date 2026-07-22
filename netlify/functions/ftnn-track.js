@@ -48,20 +48,28 @@ export default async (req) => {
       const ep = String(b.ep || "").toLowerCase();
       const ev = String(b.event || "");
       if (!/^ep\d{1,3}$/.test(ep) || !ALLOWED.has(ev)) return json({ error: "bad params" }, 400);
+      const secs = ev === "time" ? Math.max(0, Math.min(7200, Number(b.seconds) || 0)) : 0;
 
-      const data = (await store.get(KEY, { type: "json" })) || { episodes: {} };
-      if (!data.episodes[ep]) data.episodes[ep] = {};
-      const e = data.episodes[ep];
-      if (ev === "time") {
-        const s = Math.max(0, Math.min(7200, Number(b.seconds) || 0));
-        e.timeSum = (e.timeSum || 0) + s;
-        e.timeCount = (e.timeCount || 0) + 1;
-      } else {
-        e[ev] = (e[ev] || 0) + 1;
+      // compare-and-set with retry so concurrent increments don't clobber each other
+      for (let attempt = 0; attempt < 6; attempt++) {
+        const res = await store.getWithMetadata(KEY, { type: "json" });
+        const data = (res && res.data) || { episodes: {} };
+        const etag = res && res.etag;
+        if (!data.episodes[ep]) data.episodes[ep] = {};
+        const e = data.episodes[ep];
+        if (ev === "time") {
+          e.timeSum = (e.timeSum || 0) + secs;
+          e.timeCount = (e.timeCount || 0) + 1;
+        } else {
+          e[ev] = (e[ev] || 0) + 1;
+        }
+        data.updatedAt = new Date().toISOString();
+        try {
+          const w = await store.setJSON(KEY, data, etag ? { onlyIfMatch: etag } : { onlyIfNew: true });
+          if (!w || w.modified !== false) return json({ ok: true });
+        } catch (_) { /* conflict or transient — retry */ }
       }
-      data.updatedAt = new Date().toISOString();
-      await store.setJSON(KEY, data);
-      return json({ ok: true });
+      return json({ ok: true, note: "retry-exhausted" });
     }
 
     return json({ error: "method not allowed" }, 405);

@@ -81,7 +81,7 @@
       .then(function(r){ return r.json(); })
       .then(function(d){
         if (!d || d.error || !d.episodes) { if (d && d.error) console.warn("engagement:", d.error); return; }
-        var eps = Object.keys(d.episodes).filter(function(k){ return (d.episodes[k].view||0) > 0; });
+        var eps = Object.keys(d.episodes).filter(function(k){ return k !== "ep0" && (d.episodes[k].view||0) > 0; });
         if (!eps.length) return; // no data yet — keep the placeholder note
         eps.sort(function(a,b){ return (parseInt(b.replace("ep",""),10)||0) - (parseInt(a.replace("ep",""),10)||0); });
         var pctf = function(a,b){ return b > 0 ? Math.round(a / b * 100) : 0; };
