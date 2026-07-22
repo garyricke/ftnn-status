@@ -1,12 +1,14 @@
-// Netlify Function — anonymous podcast page-engagement counters.
+// Netlify Function (v2) — anonymous podcast page-engagement counters.
 // No cookies, no IP storage, no personal data — just per-episode event tallies
 // so we can answer "are people using the episode pages, or just listening?"
 //
-// POST  body {ep:"ep5", event:"view"|"play"|"complete"|"chapter"|"deepdive"|
-//             "scroll50"|"scroll90"|"time", seconds?:N}  -> increments a counter
-// GET   -> returns the aggregated JSON for the /status dashboard
+// POST body {ep:"ep5", event:"view"|"play"|"complete"|"chapter"|"deepdive"|
+//            "scroll50"|"scroll90"|"time", seconds?:N}  -> increments a counter
+// GET  -> returns the aggregated JSON for the /status dashboard
 //
-// Storage: Netlify Blobs (automatic; no external service, no keys).
+// Storage: Netlify Blobs (auto-configured for v2 functions; no external service, no keys).
+
+import { getStore } from "@netlify/blobs";
 
 const ALLOWED = new Set([
   "view", "play", "complete", "chapter", "deepdive", "scroll50", "scroll90", "time",
@@ -22,31 +24,31 @@ const cors = {
   "Cache-Control": "no-store",
 };
 
-exports.handler = async function (event) {
-  if (event.httpMethod === "OPTIONS") return { statusCode: 204, headers: cors, body: "" };
+const json = (obj, status = 200) => new Response(JSON.stringify(obj), { status, headers: cors });
+
+export default async (req) => {
+  if (req.method === "OPTIONS") return new Response("", { status: 204, headers: cors });
 
   let store;
   try {
-    const { getStore } = await import("@netlify/blobs");
     store = getStore(STORE);
   } catch (e) {
-    return { statusCode: 200, headers: cors, body: JSON.stringify({ error: "blobs unavailable: " + e.message, episodes: {} }) };
+    return json({ error: "blobs unavailable: " + e.message, episodes: {} });
   }
 
   try {
-    if (event.httpMethod === "GET") {
+    if (req.method === "GET") {
       const data = (await store.get(KEY, { type: "json" })) || { episodes: {} };
-      return { statusCode: 200, headers: cors, body: JSON.stringify({ ...data, asOf: new Date().toISOString() }) };
+      return json({ ...data, asOf: new Date().toISOString() });
     }
 
-    if (event.httpMethod === "POST") {
+    if (req.method === "POST") {
       let b = {};
-      try { b = JSON.parse(event.body || "{}"); } catch (_) {}
+      try { b = JSON.parse((await req.text()) || "{}"); } catch (_) {}
       const ep = String(b.ep || "").toLowerCase();
       const ev = String(b.event || "");
-      if (!/^ep\d{1,3}$/.test(ep) || !ALLOWED.has(ev)) {
-        return { statusCode: 400, headers: cors, body: JSON.stringify({ error: "bad params" }) };
-      }
+      if (!/^ep\d{1,3}$/.test(ep) || !ALLOWED.has(ev)) return json({ error: "bad params" }, 400);
+
       const data = (await store.get(KEY, { type: "json" })) || { episodes: {} };
       if (!data.episodes[ep]) data.episodes[ep] = {};
       const e = data.episodes[ep];
@@ -59,11 +61,11 @@ exports.handler = async function (event) {
       }
       data.updatedAt = new Date().toISOString();
       await store.setJSON(KEY, data);
-      return { statusCode: 200, headers: cors, body: JSON.stringify({ ok: true }) };
+      return json({ ok: true });
     }
 
-    return { statusCode: 405, headers: cors, body: JSON.stringify({ error: "method not allowed" }) };
+    return json({ error: "method not allowed" }, 405);
   } catch (e) {
-    return { statusCode: 200, headers: cors, body: JSON.stringify({ error: e.message }) };
+    return json({ error: e.message });
   }
 };
