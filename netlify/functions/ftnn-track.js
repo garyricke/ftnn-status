@@ -50,8 +50,9 @@ export default async (req) => {
       if (!/^ep\d{1,3}$/.test(ep) || !ALLOWED.has(ev)) return json({ error: "bad params" }, 400);
       const secs = ev === "time" ? Math.max(0, Math.min(7200, Number(b.seconds) || 0)) : 0;
 
-      // compare-and-set with retry so concurrent increments don't clobber each other
-      for (let attempt = 0; attempt < 6; attempt++) {
+      // compare-and-set with jittered retry so concurrent increments don't clobber each other
+      const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+      for (let attempt = 0; attempt < 25; attempt++) {
         const res = await store.getWithMetadata(KEY, { type: "json" });
         const data = (res && res.data) || { episodes: {} };
         const etag = res && res.etag;
@@ -68,6 +69,7 @@ export default async (req) => {
           const w = await store.setJSON(KEY, data, etag ? { onlyIfMatch: etag } : { onlyIfNew: true });
           if (!w || w.modified !== false) return json({ ok: true });
         } catch (_) { /* conflict or transient — retry */ }
+        await sleep(15 + Math.floor(Math.random() * 60) * (1 + attempt * 0.15));
       }
       return json({ ok: true, note: "retry-exhausted" });
     }
