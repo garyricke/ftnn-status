@@ -1,114 +1,25 @@
 <!-- =====================================================================
-     SQUARESPACE  /status  PAGE — paste this whole block into a Code Block.
-     Already wired — no edits needed. It pulls the latest status from GitHub
-     Pages, plus live budget hours (Clockify) and podcast engagement from the
-     Netlify functions. Re-paste this whenever the loader is updated.
+     SQUARESPACE  /status  PAGE — paste this ONCE into a Code Block.
+     This is a permanent bootstrap: it never needs re-pasting. It loads the
+     latest status content AND the latest loader logic live from GitHub Pages,
+     so every update (content, budget, engagement) goes live on `git push`.
      ===================================================================== -->
 <div id="ftnn-status-mount" style="min-height:200px;font-family:-apple-system,Segoe UI,sans-serif;color:#6b7e89;padding:24px;">Loading status…</div>
 <script>
 (function(){
-  var STATUS_URL = "https://garyricke.github.io/ftnn-status/ftnn-status.html";
-  var BUDGET_URL = "https://ftnn-status.netlify.app/.netlify/functions/ftnn-budget";
-  var ENGAGE_URL = "https://ftnn-status.netlify.app/.netlify/functions/ftnn-track";
+  var BASE = "https://garyricke.github.io/ftnn-status/";
   var mount = document.getElementById("ftnn-status-mount");
-
-  fetch(STATUS_URL + "?v=" + Date.now(), {cache:"no-store"})
+  fetch(BASE + "ftnn-status.html?v=" + Date.now(), {cache:"no-store"})
     .then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); })
-    .then(function(html){ mount.innerHTML = html; loadBudget(); loadEngagement(); })
+    .then(function(html){
+      mount.innerHTML = html;
+      var s = document.createElement("script");
+      s.src = BASE + "status-loader.js?v=" + Date.now();
+      document.body.appendChild(s);
+    })
     .catch(function(e){
       mount.innerHTML = '<p style="color:#b42318;padding:24px;">Status is temporarily unavailable. Please refresh in a moment.</p>';
       console.error("FTNN status load failed:", e);
     });
-
-  function loadBudget(){
-    if (BUDGET_URL.indexOf("YOUR-NETLIFY-SITE") !== -1) return; // not wired yet — keep static snapshot
-    fetch(BUDGET_URL + "?v=" + Date.now(), {cache:"no-store"})
-      .then(function(r){ return r.json(); })
-      .then(function(b){
-        if (!b || b.error) { if (b && b.error) console.warn("budget:", b.error); return; }
-        var $ = function(id){ return document.getElementById(id); };
-        var pct = Math.round(b.pctUsed);
-        var set = function(id, v){ var el=$(id); if(el) el.textContent=v; };
-        set("fs-bud-pct", pct);
-        var pill = $("fs-bud-pill");
-        if (pill) pill.className = "pill " + (pct >= 90 ? "is-blocked" : pct >= 75 ? "is-next" : "is-active");
-        set("fs-bud-used", b.usedHours.toFixed(1));
-        set("fs-bud-remaining", b.remainingHours.toFixed(1));
-        set("fs-bud-net", b.netHours);
-        set("fs-bud-elapsed", b.elapsedDays);
-        set("fs-bud-netend", b.netHours + " h avail");
-        set("fs-bud-mid", b.usedHours.toFixed(1) + " h used · " + pct + "% of available");
-        var meter = $("fs-bud-meter");
-        if (meter){
-          meter.style.width = Math.max(0, Math.min(100, b.pctUsed)) + "%";
-          meter.style.background = pct>=90 ? "#D71D5A"
-            : pct>=75 ? "linear-gradient(90deg,#F4A030,#D71D5A)"
-            : pct>=50 ? "linear-gradient(90deg,#28A745,#1282AD)"
-            : "linear-gradient(90deg,#28A745,#28A745)";
-        }
-        var note = $("fs-bud-note");
-        if (note){
-          var asof = new Date(b.asOf).toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
-          var carry = b.carryoverHours ? " plus <strong>" + b.carryoverHours + " h</strong> carried over from the prior account" : "";
-          note.innerHTML = "Prepaid block: <strong>" + b.blockHours + " h · $5,000</strong> (Invoice 03043701, ≈ $" + b.rate.toFixed(2) + "/h)" + carry + " = <strong>" + b.netHours + " h available</strong> for 2026. <strong>" + b.usedHours.toFixed(1) + " h</strong> used, ~<strong>" + b.remainingHours.toFixed(1) + " h (~$" + b.dollarsRemaining.toLocaleString() + ")</strong> left · <strong>" + b.elapsedDays + " days</strong> elapsed. Live from Clockify “" + b.project + "” · updated " + asof + ".";
-        }
-        // weekly bar chart in the detail modal
-        if (b.byWeek && b.byWeek.length) {
-          var wc = $("fs-bud-weeks");
-          if (wc) {
-            var mon = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-            var mx = b.byWeek.reduce(function(a,w){ return Math.max(a, w.hours); }, 0) || 1;
-            wc.innerHTML = b.byWeek.map(function(w){
-              var d = new Date(w.weekStart + "T00:00:00Z");
-              var lab = mon[d.getUTCMonth()] + " " + d.getUTCDate();
-              var pct = Math.max(2, Math.round(w.hours / mx * 100));
-              return '<div class="fs-bar-row"><span class="fs-bar-lab">' + lab + '</span><span class="fs-bar-track"><span class="fs-bar-fill" style="width:' + pct + '%"></span></span><span class="fs-bar-val">' + w.hours.toFixed(1) + 'h</span></div>';
-            }).join("");
-          }
-          var wn = $("fs-bud-weeks-note");
-          if (wn) wn.textContent = "Total tracked to date: " + b.usedHours.toFixed(1) + " h on the current block — live from Clockify “" + b.project + "”.";
-        }
-      })
-      .catch(function(e){ console.warn("budget fetch failed:", e); });
-  }
-
-  function loadEngagement(){
-    fetch(ENGAGE_URL + "?v=" + Date.now(), {cache:"no-store"})
-      .then(function(r){ return r.json(); })
-      .then(function(d){
-        if (!d || d.error || !d.episodes) { if (d && d.error) console.warn("engagement:", d.error); return; }
-        var eps = Object.keys(d.episodes).filter(function(k){ return k !== "ep0" && (d.episodes[k].view||0) > 0; });
-        if (!eps.length) return; // no data yet — keep the placeholder note
-        eps.sort(function(a,b){ return (parseInt(b.replace("ep",""),10)||0) - (parseInt(a.replace("ep",""),10)||0); });
-        var pctf = function(a,b){ return b > 0 ? Math.round(a / b * 100) : 0; };
-        var fmtT = function(s){ s = Math.round(s||0); var m = Math.floor(s/60), ss = s%60; return m + ":" + (ss<10?"0":"") + ss; };
-        var stat = function(val, lab){
-          return '<div style="flex:1 1 88px;min-width:82px;"><div style="font-size:20px;font-weight:800;color:#0F3D57;line-height:1.1;">' + val
-            + '</div><div style="font-size:10.5px;color:#6b7e89;text-transform:uppercase;letter-spacing:.05em;margin-top:2px;">' + lab + '</div></div>';
-        };
-        var html = eps.map(function(k){
-          var e = d.episodes[k];
-          var v = e.view||0, p = e.play||0, c = e.complete||0, ch = e.chapter||0, dd = e.deepdive||0, s90 = e.scroll90||0;
-          var avg = e.timeCount ? e.timeSum / e.timeCount : 0;
-          return '<div style="border-top:1px solid #dce6ec;padding:13px 0 4px;">'
-            + '<div style="font-weight:800;color:#0F3D57;margin-bottom:9px;">Ep ' + k.replace("ep","") + '</div>'
-            + '<div style="display:flex;flex-wrap:wrap;gap:14px 8px;">'
-            + stat(v.toLocaleString(), "Views")
-            + stat(pctf(p, v) + "%", "Played")
-            + stat(pctf(c, p) + "%", "Play-through")
-            + stat(pctf(s90, v) + "%", "Read to end")
-            + stat(pctf(ch, v) + "%", "Used chapters")
-            + stat(pctf(dd, v) + "%", "Deep dives")
-            + stat(fmtT(avg), "Avg time")
-            + '</div></div>';
-        }).join("");
-        var rows = document.getElementById("fs-eng-rows"); if (rows) rows.innerHTML = html;
-        var note = document.getElementById("fs-eng-note");
-        if (note) note.innerHTML = "Live &amp; anonymous — no cookies or personal data. “Played” = share of visitors who hit play; “Read to end”, “Used chapters”, and “Deep dives” show whether people engage the page beyond the audio. Updated " + new Date(d.updatedAt || d.asOf || Date.now()).toLocaleDateString("en-US",{month:"long",day:"numeric"}) + ".";
-        var pill = document.getElementById("fs-eng-pill");
-        if (pill) pill.innerHTML = '<span class="pd"></span>Live';
-      })
-      .catch(function(e){ console.warn("engagement fetch failed:", e); });
-  }
 })();
 </script>
