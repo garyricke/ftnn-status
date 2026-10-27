@@ -7,3 +7,17 @@
 
 [functions]
   node_bundler = "esbuild"
+
+# The Squarespace /status embed fetches these from fetaltherapynursenetwork.org,
+# so they need CORS (GitHub Pages used to send this by default).
+[[headers]]
+  for = "/ftnn-status.html"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/status-loader.js"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "no-cache"

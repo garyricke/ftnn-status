@@ -1,13 +1,13 @@
 <!-- =====================================================================
      SQUARESPACE  /status  PAGE — paste this ONCE into a Code Block.
      This is a permanent bootstrap: it never needs re-pasting. It loads the
-     latest status content AND the latest loader logic live from GitHub Pages,
+     latest status content AND the latest loader logic live from Netlify (ftnn-status.netlify.app),
      so every update (content, budget, engagement) goes live on `git push`.
      ===================================================================== -->
 <div id="ftnn-status-mount" style="min-height:200px;font-family:-apple-system,Segoe UI,sans-serif;color:#6b7e89;padding:24px;">Loading status…</div>
 <script>
 (function(){
-  var BASE = "https://garyricke.github.io/ftnn-status/";
+  var BASE = "https://ftnn-status.netlify.app/";
   var mount = document.getElementById("ftnn-status-mount");
   fetch(BASE + "ftnn-status.html?v=" + Date.now(), {cache:"no-store"})
     .then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); })
