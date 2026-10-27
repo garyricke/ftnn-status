@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>2026 Conference Recordings · FTNN</title>
+<link rel="canonical" href="https://ftnn-status.netlify.app/recordings">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  body { margin: 0; background: #F2F8FC; }
+</style>
+</head>
+<body>
+
+<!-- ===== Squarespace Code Block: copy from here to END ===== -->
+<div id="ftnn-recordings">
+<style>
+  /* Layout: one column; day sections hold time slots; each session card expands to play in place */
+  #ftnn-recordings {
+    --navy: #0F3D57; --blue: #1282AD; --light: #71B4CE; --bg: #F2F8FC;
+    --pink: #D71D5A; --amber: #F4A030; --ink: #0F3D57; --muted: #4E6878;
+    --line: #D5E5EF; --card: #FFFFFF; --chip: #E4F1F8;
+    --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-family: var(--font); color: var(--ink); background: var(--bg);
+    line-height: 1.5; font-size: 16px;
+    padding: 40px max(16px, env(safe-area-inset-right, 0px)) 64px max(16px, env(safe-area-inset-left, 0px));
+  }
+  #ftnn-recordings *, #ftnn-recordings *::before, #ftnn-recordings *::after { box-sizing: border-box; }
+  #ftnn-recordings h1, #ftnn-recordings h2, #ftnn-recordings h3, #ftnn-recordings p,
+  #ftnn-recordings ul, #ftnn-recordings li, #ftnn-recordings button { margin: 0; padding: 0; font: inherit; color: inherit; }
+  #ftnn-recordings ul { list-style: none; }
+  #ftnn-recordings button { background: none; border: 0; cursor: pointer; text-align: left; }
+  #ftnn-recordings svg { width: 24px; height: 24px; flex: none; }
+
+  #ftnn-recordings .wrap { max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+
+  /* Header */
+  #ftnn-recordings .head { display: flex; flex-direction: column; gap: 12px; }
+  #ftnn-recordings .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); }
+  #ftnn-recordings h1 { font-size: clamp(28px, 5vw, 40px); font-weight: 700; line-height: 1.15; letter-spacing: -.01em; text-wrap: balance; color: var(--navy); }
+  #ftnn-recordings .theme { font-size: 17px; color: var(--muted); max-width: 62ch; }
+  #ftnn-recordings .meta { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  #ftnn-recordings .meta span { display: inline-flex; align-items: center; gap: 6px; }
+  #ftnn-recordings .meta svg { width: 18px; height: 18px; color: var(--blue); }
+
+  /* Day nav */
+  #ftnn-recordings .daynav { display: flex; gap: 8px; flex-wrap: wrap; }
+  #ftnn-recordings .daynav a { font-size: 14px; font-weight: 600; color: var(--navy); text-decoration: none; padding: 8px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); }
+  #ftnn-recordings .daynav a:hover { border-color: var(--blue); color: var(--blue); }
+  #ftnn-recordings .daynav a:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+  /* Day + slot */
+  #ftnn-recordings .day { display: flex; flex-direction: column; gap: 28px; scroll-margin-top: 24px; }
+  #ftnn-recordings .day-h { display: flex; align-items: baseline; gap: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--navy); }
+  #ftnn-recordings .day-h h2 { font-size: 22px; font-weight: 700; color: var(--navy); }
+  #ftnn-recordings .day-h p { font-size: 14px; color: var(--muted); }
+  #ftnn-recordings .slot { display: grid; grid-template-columns: 92px 1fr; gap: 16px; }
+  #ftnn-recordings .slot-t { font-size: 14px; font-weight: 600; color: var(--blue); font-variant-numeric: tabular-nums; padding-top: 16px; }
+  #ftnn-recordings .slot-t small { display: block; font-size: 12px; font-weight: 500; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; margin-top: 2px; }
+  #ftnn-recordings .slot ul { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+
+  /* Session card */
+  #ftnn-recordings .s { background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  #ftnn-recordings .s.open { border-color: var(--blue); box-shadow: 0 6px 24px rgba(15, 61, 87, .10); }
+  #ftnn-recordings .s-btn { width: 100%; display: grid; grid-template-columns: 136px 1fr auto; gap: 16px; align-items: center; padding: 12px; }
+  #ftnn-recordings .s-btn:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; border-radius: 10px; }
+  #ftnn-recordings .thumb { position: relative; width: 136px; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 6px; overflow: hidden; background: var(--chip); }
+  #ftnn-recordings .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  #ftnn-recordings .thumb .dur { position: absolute; right: 4px; bottom: 4px; font-size: 11px; font-weight: 600; color: #fff; background: rgba(15, 61, 87, .85); padding: 1px 6px; border-radius: 4px; font-variant-numeric: tabular-nums; }
+  #ftnn-recordings .thumb .ph { position: absolute; inset: 0; display: grid; place-items: center; color: var(--light); }
+  #ftnn-recordings .s-txt { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+  #ftnn-recordings .s-title { font-size: 16px; font-weight: 600; line-height: 1.35; color: var(--navy); }
+  #ftnn-recordings .s-who { font-size: 14px; color: var(--muted); }
+  #ftnn-recordings .s-act { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--navy); color: #fff; }
+  #ftnn-recordings .s-btn:hover .s-act { background: var(--blue); }
+  #ftnn-recordings .s.open .s-act { background: var(--blue); }
+  #ftnn-recordings .soon { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); background: var(--chip); padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+  #ftnn-recordings .s.pending .s-btn { cursor: default; }
+  #ftnn-recordings .s.pending .s-title { color: var(--muted); }
+
+  #ftnn-recordings .player { padding: 0 12px 12px; }
+  #ftnn-recordings .player video { display: block; width: 100%; max-width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; }
+
+  #ftnn-recordings .foot { font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 20px; }
+
+  @media (max-width: 600px) {
+    #ftnn-recordings .slot { grid-template-columns: 1fr; gap: 8px; }
+    #ftnn-recordings .slot-t { padding-top: 0; }
+    #ftnn-recordings .slot-t small { display: inline; margin-left: 8px; }
+    #ftnn-recordings .s-btn { grid-template-columns: 96px 1fr auto; gap: 12px; padding: 10px; }
+    #ftnn-recordings .thumb { width: 96px; }
+    #ftnn-recordings .s-title { font-size: 15px; }
+    #ftnn-recordings .s-act { width: 40px; height: 40px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    #ftnn-recordings .s, #ftnn-recordings .s-act { transition: border-color .15s, box-shadow .15s, background .15s; }
+  }
+</style>
+
+<div class="wrap">
+  <header class="head">
+    <p class="eyebrow">Fetal Therapy Nurse Network · Chicago · October 13–14, 2026</p>
+    <h1>2026 Conference Recordings</h1>
+    <p class="theme">One Heart, Many Hands: Advancing Collaborative Care in Fetal Therapy. Thank you for joining us. Every session recorded at the conference is here to watch again or catch the breakouts you missed.</p>
+    <p class="meta" id="ftnn-rec-meta"></p>
+    <nav class="daynav" aria-label="Jump to day">
+      <a href="#ftnn-day-1">Day 1 · Tuesday, Oct 13</a>
+      <a href="#ftnn-day-2">Day 2 · Wednesday, Oct 14</a>
+    </nav>
+  </header>
+
+  <div id="ftnn-rec-days"></div>
+
+  <p class="foot">These recordings are for registered 2026 conference attendees. Please don't share the videos or this page outside the conference community. Questions? Contact the FTNN conference team.</p>
+</div>
+
+<script>
+(function () {
+  var CLD = "https://res.cloudinary.com/dsbllwpbh/video/upload/";
+  // src: Cloudinary "v<version>/<public_id>" once a session is edited and hosted; null = still processing.
+  var DAYS = [
+    { id: "ftnn-day-1", label: "Day 1", date: "Tuesday, October 13", slots: [
+      { time: "8:30 AM", sessions: [
+        { title: "Respectful Maternity Care", who: "Sarah Copple, MSN, RNC-MNN, C-ONQS", src: null, dur: 0 } ] },
+      { time: "9:30 AM", sessions: [
+        { title: "Where Care Meets Compassion: Integrating Palliative Care into Fetal Therapy Nursing", who: "Jenny Kessler, BSN, RN · Macy Femrite, BSN, RN", src: null, dur: 0 } ] },
+      { time: "11:00 AM", track: "Breakout 1", sessions: [
+        { title: "Preparing Fetal Therapy Programs for Amniotic Fluid Embolism: A Call to Action for Standardized Response Across Diverse Care Environments", who: "Tracy Stewart, MHA, BSN, RNC-EFM", src: null, dur: 0 },
+        { title: "Continuity in Complexity: Defining the Advanced Practice Role in Fetal Health Centers", who: "Kristine Piraino, APRN-NP, PNP · Tonya Duke, APRN, FNP · Danielle Pray, APN, FNP-C", src: null, dur: 0 },
+        { title: "Somali & Spanish Educational Videos for Fetal Patients", who: "Stephanie Eyerly-Webb, PhD · Shukri Jumale, MSN, RN, CLE, NE-BC", src: null, dur: 0 } ] },
+      { time: "1:00 PM", sessions: [
+        { title: "The Emotional Weight of Fetal Therapy: Burnout, Psychological Safety, and Sustaining the Multidisciplinary Team", who: "Danielle Pray, APN, FNP-C", src: null, dur: 0 } ] },
+      { time: "2:15 PM", track: "Breakout 2", sessions: [
+        { title: "Enhanced Care Coordination for D-TGA", who: "Robin Weddick, MSN, RN, CNL", src: null, dur: 0 },
+        { title: "Building Relationships, Increasing Access, and Casting Safety Nets: Nurse Navigator Roles", who: "Emilie Lamberg-Jones, BSW, RN, C-EFM · Olivia Mott, BSN, RNC-OB, C-EFM", src: null, dur: 0 },
+        { title: "A 10-Year Review of Mental Health Screenings", who: "Valerie Akerson, MSW, LCSW, PMH-C", src: null, dur: 0 } ] },
+      { time: "3:45 PM", sessions: [
+        { title: "Get Inspired, Re-Fueled, and IGNITED!", who: "Pamela Spivey, MSN, RN, CPEC", src: null, dur: 0 } ] }
+    ] },
+    { id: "ftnn-day-2", label: "Day 2", date: "Wednesday, October 14", slots: [
+      { time: "8:30 AM", sessions: [
+        { title: "Navigating Fetal Conditions Through a Reproductive Justice Lens: Lessons from Composite Cases in the United States", who: "Shukri Jumale, MSN, RN, CLE, NE-BC · Abigail Wilpers, RN, PhD", src: null, dur: 0 } ] },
+      { time: "9:45 AM", track: "Breakout 3", sessions: [
+        { title: "Fetal Surgery Post-Op Care", who: "Lisa Miller, MS, RN, RNC-OB, C-EFM · Anna Connair, WHNP, APRN", src: null, dur: 0 },
+        { title: "Nursing Bonds: Enhancing Patient Wellbeing Through Relationship-Based Care", who: "Angela White, RN, MSN, CPN", src: null, dur: 0 },
+        { title: "Reducing Variability in T13/T18 Care: A Standardized Multidisciplinary Approach", who: "Eryn Hughey, BSN, RN · Ali Herboth, RN, CCRN", src: null, dur: 0 } ] },
+      { time: "11:15 AM", track: "Breakout 4", sessions: [
+        { title: "Enhancing L&D Nurse Competency in Fetal Surgery Through Standardized Training", who: "Kathleen McGowan, MSN, RNC-OB", src: "v1793111530/ftnn/conference-2026/ld-nurse-competency-fetal-surgery", dur: 2695 },
+        { title: "Perinatal Postmortem Evaluations: A Primer for Fetal Care Providers", who: "Rachael J. Bradshaw, MS, CGC", src: null, dur: 0 },
+        { title: "Diagnostic Uncertainty as a Primary Driver for Perinatal Palliative Care Consultation", who: "Kelly Kelso, MSN, CPNP", src: null, dur: 0 } ] },
+      { time: "1:00 PM", sessions: [
+        { title: "Closing Presentation: Leading the Way With Possibilities", who: "Pamela Spivey, MSN, RN, CPEC", src: null, dur: 0 } ] }
+    ] }
+  ];
+
+  var ICON = {
+    play: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>',
+    close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+    film: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9.5v5l4-2.5z" fill="currentColor"/></svg>',
+    clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    list: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>'
+  };
+
+  function clock(s) {
+    var h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = Math.floor(s % 60);
+    var mm = (h && m < 10 ? "0" : "") + m, ss = (x < 10 ? "0" : "") + x;
+    return (h ? h + ":" : "") + mm + ":" + ss;
+  }
+  function esc(t) { var d = document.createElement("div"); d.textContent = t; return d.innerHTML; }
+
+  var root = document.getElementById("ftnn-rec-days");
+  var total = 0, ready = 0, secs = 0, idx = 0;
+
+  DAYS.forEach(function (day) {
+    var sec = document.createElement("section");
+    sec.className = "day"; sec.id = day.id;
+    sec.innerHTML = '<div class="day-h"><h2>' + day.label + '</h2><p>' + day.date + '</p></div>';
+    day.slots.forEach(function (slot) {
+      var row = document.createElement("div");
+      row.className = "slot";
+      row.innerHTML = '<p class="slot-t">' + slot.time + (slot.track ? "<small>" + slot.track + "</small>" : "") + "</p><ul></ul>";
+      var ul = row.querySelector("ul");
+      slot.sessions.forEach(function (s) {
+        total++; idx++;
+        var li = document.createElement("li");
+        li.className = "s" + (s.src ? "" : " pending");
+        var pid = "ftnn-p-" + idx;
+        var thumb = s.src
+          ? '<img loading="lazy" alt="" src="' + CLD + "so_90,w_400,c_fill,ar_16:9,f_auto,q_auto/" + s.src + '.jpg"><span class="dur">' + clock(s.dur) + "</span>"
+          : '<span class="ph">' + ICON.film + "</span>";
+        li.innerHTML =
+          '<button class="s-btn" type="button"' + (s.src ? ' aria-expanded="false" aria-controls="' + pid + '"' : ' aria-disabled="true"') + ">" +
+            '<span class="thumb">' + thumb + "</span>" +
+            '<span class="s-txt"><span class="s-title">' + esc(s.title) + '</span><span class="s-who">' + esc(s.who) + "</span></span>" +
+            (s.src ? '<span class="s-act" aria-hidden="true">' + ICON.play + "</span>" : '<span class="soon">Coming soon</span>') +
+          "</button>" +
+          (s.src ? '<div class="player" id="' + pid + '" hidden></div>' : "");
+        if (s.src) {
+          ready++; secs += s.dur;
+          li.querySelector(".s-btn").setAttribute("aria-label", "Play " + s.title + ", " + clock(s.dur));
+          li.querySelector(".s-btn").addEventListener("click", function () { toggle(li, s); });
+        }
+        ul.appendChild(li);
+      });
+      sec.appendChild(row);
+    });
+    root.appendChild(sec);
+  });
+
+  document.getElementById("ftnn-rec-meta").innerHTML =
+    "<span>" + ICON.list + ready + " of " + total + " sessions available</span>" +
+    (secs ? "<span>" + ICON.clock + (Math.round(secs / 360) / 10) + " hours of recordings</span>" : "");
+
+  var openLi = null;
+  function close(li) {
+    var v = li.querySelector("video"); if (v) v.pause();
+    li.classList.remove("open");
+    li.querySelector(".player").hidden = true;
+    var b = li.querySelector(".s-btn"); b.setAttribute("aria-expanded", "false");
+    li.querySelector(".s-act").innerHTML = ICON.play;
+  }
+  function toggle(li, s) {
+    if (openLi === li) { close(li); openLi = null; return; }
+    if (openLi) close(openLi);
+    var p = li.querySelector(".player");
+    if (!p.firstChild) {
+      p.innerHTML = '<video controls playsinline preload="metadata" poster="' + CLD + "so_90,w_1280,f_auto,q_auto/" + s.src + '.jpg"><source src="' + CLD + s.src + '.mp4" type="video/mp4"></video>';
+    }
+    p.hidden = false;
+    li.classList.add("open");
+    li.querySelector(".s-btn").setAttribute("aria-expanded", "true");
+    li.querySelector(".s-act").innerHTML = ICON.close;
+    var v = p.querySelector("video");
+    var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});
+    openLi = li;
+  }
+})();
+</script>
+</div>
+<!-- ===== END Squarespace Code Block ===== -->
+
+</body>
+</html>
